@@ -2,10 +2,19 @@ Building Sandcastles in the Clouds
 
 A test environment is an ephemeral thing.  It's always in flux.  New code is pushed regularly.  Requirements change unpredictably.  And test data is unreliable at best.  
 
-If you're like most, your test enviroment is at best a poor reflection of production.  It's never stable, and constantly shifting.  And you've only got one.
+If you're like most, your test enviroment is at best a poor reflection of production.  It's never stable.  It is constantly shifting beneath your feet.  And you've only got one. 
 
 But the amount of work needed to create a useable test environment can be daunting.  There are hardware resources to allocate, environment configuration dependencies, security concerns, and deployment hurdles to overcome.  
 
+Continuous Delivery seems like a pipe dream.  Releases can turn into nightmares.  Agile is not delivering on it's promise of faster development.
+
+It can be better.  Sometimes you just need another buzzword.  And a bit of experience.
+
+Let us help you building test environments in the cloud.
+
+
+
+[Sign up now.]
 
 
 
