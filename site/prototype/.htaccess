@@ -1,0 +1,4 @@
+
+ForceType application/x-httpd-php
+Php_value auto_prepend_file /dev/qazar/site/prototype/parts/header.html
+Php_value auto_append_file /dev/qazar/site/prototype/parts/footer.html

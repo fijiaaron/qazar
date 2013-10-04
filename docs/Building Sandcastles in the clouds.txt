@@ -10,7 +10,7 @@ Continuous Delivery seems like a pipe dream.  Releases can turn into nightmares.
 
 It can be better.  Sometimes you just need another buzzword.  And a bit of experience.
 
-We can help you building test environments in the cloud.
+We can help you build test environments in the cloud.
 
 
 
