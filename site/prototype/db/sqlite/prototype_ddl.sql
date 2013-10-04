@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS comment_topics;
 DROP TABLE IF EXISTS comment_links;
 
 create table users (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,	
 	name varchar(100),
 	email varchar(100)
 );
