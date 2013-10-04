@@ -1,13 +1,13 @@
 <?php
-	$url = $_SERVER['REQUEST_URI']
+	$url = $_SERVER['REQUEST_URI'];
 	$urlbase = "/";
 	$suffix = ".html";
 
-	$pagename = $_REQUEST
+	$pagename = "landing";
 	$page = $urlbase . $pagename . $suffix;
 ?>
 
 <h1> Display </h1>
 <hr>
-
-<?php include($page);
+<?= $url ?>
+<?php include($page); ?>
