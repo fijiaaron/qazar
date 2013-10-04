@@ -20,7 +20,7 @@ input, button, textarea, select {
         border-radius: 5px;
 }
 
-input[type=file], input[type=button] {
+input[type=file], input[type=button], input[type=submit], input[type=reset] {
         background: #333;
         color: white;
 }
@@ -93,7 +93,6 @@ li {
         height: auto !important;
         height: 100%;
         margin: 0 auto -4em;
-        position: relative;
 }
 
 .footer, .push {
