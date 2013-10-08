@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title> Cloud Test Enviroments </title>
+        <link href="{{url_for('static', filename='prototype.css')}}" rel="stylesheet" type="text/css" media="screen" />
+                <style>
+                    {% include 'prototype.css'%}
+                </style>
+                <style>
+                    * { margin: 0; padding: 0;}
+                    table { border-collapse: collapse; }
+                    table, td { vertical-align: top; }
+                </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <table>
+                <tr>
+                    <td style="width: 900px; border-right: 3px dashed gray;">
+                        <div class="content" style="max-width: 900px; padding: 25px; line-height: 1.5">
+                            <!-- end header -->
+                            {% block content %}{% endblock %}
+                            <!-- begin footer -->
+                        </div><!-- end content -->
+                        <div class="push"></div>
+                    </td>
+                    <td style="padding-left: 10px;">
+                        {% include "comments.html"%}
+                    </td>
+                </tr>
+            </table>
+        </div> <!-- end wrapper -->
+        <div class="footer" style="border-top: 1px solid gray; background: #ddd">
+            <ul class="menu" style="margin: 1em">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="blog.html">Blog</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+                <li>
+                    <a href="chat.html">Chat</a>         
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                </li>
+                <li>           
+                    <a href="landing.html">Offer</a>
+                </li>                                                                                                   
+            </ul>
+        </div> <!-- end footer --> 
+    </body>
+</html>
