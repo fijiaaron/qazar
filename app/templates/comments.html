@@ -1,0 +1,44 @@
+<div id="comments" style="font: 10pt arial">
+<?php 
+	require_once("comments_functions.php");
+
+	$topics = get_topics_from_url($_SERVER['REQUEST_URI']);
+
+	$basedir = dirname($_SERVER['DOCUMENT_ROOT']);
+	$db = $basedir . "/db/sqlite/prototype.db";
+
+	$comments = get_comments_in_topics($topics, $db);
+?>
+
+<h2> Comments </h2>
+
+<h3> Add Comment </h3>
+<form action="post_comment.php" method="POST" style="width: 412px">
+
+	Topic
+	<select name="topic">
+	<? foreach ($topics as $topic): ?>
+		<option value="<?= $topic ?>"><?= $topic ?></option>
+	<? endforeach ?>
+	</select>
+	<br/>
+
+	<input name="author" placeholder="Your Name <you@example.com>" style="width: 20em"/>
+	<br/>
+
+	<textarea name="comment" placeholder="comments" style="width: 20em; height: 5em"></textarea>		
+
+	<div style="float: right">
+		<input type="submit" value="save"/>
+	</div>
+
+</form>
+
+
+<?php
+
+
+?>
+
+
+</div><!-- end comments -->
