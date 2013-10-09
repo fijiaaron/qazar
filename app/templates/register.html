@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
 <h1>Registration Form</h1>
 
 <form style="width: 412px">
@@ -14,13 +16,14 @@
 	<br>
 
 	<div style="float: left">
-		<a href="/details.html"><input type="button" value="Tell Me More"/></a>
+		<a href="details"><input type="button" value="Tell Me More"/></a>
 	</div>
 
 	<div style="float: right">
-		<a href="/payment.html"><input type="button" value="Place Order"/></a>
+		<a href="payment"><input type="button" value="Place Order"/></a>
 	</div>
 
 	<div style="clear: both"/>
 
 </form>
+{% endblock %}
