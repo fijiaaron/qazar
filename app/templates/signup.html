@@ -1,0 +1,63 @@
+<!-- extend from base layout -->
+{% extends "layout.html" %}
+
+{% block content %}
+<center>
+	<form name="signup" action="" method="post" class="input">
+		{{form.hidden_tag()}}
+		<table>
+				<tr>
+				<div class="row"><td class="label" id="name" align="right">{{form.name.label}}<em>*</em>:</td>
+					<td align="left">
+						{{form.name(class="inputfield")}}
+						{% for error in form.errors.fname %}
+						<span style="color:red; position: relative;">[{{error}}]</span>
+						{% endfor %}
+					</td>
+				</div></tr>
+				<tr>
+				<div class="row"><td class="label" id="email" align="right">{{form.email.label}}<em>*</em>:</td>
+					<td align="left">
+						{{form.email(class="inputfield")}}
+						{% for error in form.errors.email %}
+						<span style="color:red; position: relative;">[{{error}}]</span>
+						{% endfor %}
+					</input></td>
+				</div></tr>
+				<tr>
+				<div class="row"><td class="label" id="phone" align="right">{{form.phone.label}}:</td>
+					<td align="left">
+						{{form.phone(class="inputfield")}}
+					</input></td>
+				</div></tr>
+				<tr>
+				<div class="row"><td class="label" id="company" align="right">{{form.company.label}}:</td>
+					<td align="left">
+						{{form.company(class="inputfield")}}
+					</input></td>
+				</div></tr>
+				<br>
+		</table>
+		<p>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<input type="hidden" name="cmd" value="_xclick">
+					<input type="hidden" name="business" value="aarone@one-shore.com">
+					<input type="hidden" name="lc" value="US">
+					<input type="hidden" name="item_name" value="Cloud Test Environment">
+					<input type="hidden" name="amount" value="97.00">
+					<input type="hidden" name="currency_code" value="USD">
+					<input type="hidden" name="button_subtype" value="services">
+					<input type="hidden" name="no_note" value="0">
+					<input type="hidden" name="shipping" value="0.00">
+					<input type="hidden" name="first_name" value="">
+					<input type="hidden" name="last_name" value="">
+					<input type="hidden" name="email" value={{form.email.data}}>
+					<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			</form>
+		</p>
+	</form>
+</center>
+{% endblock %}
+		

@@ -2,28 +2,52 @@
 {% block content %}
 <h1>Registration Form</h1>
 
-<form style="width: 412px">
-	<input placeholder="Name" style="width: 400px" /> 
-	<br>
-
-	<input placeholder="Email Address" style="width: 400px" />
-	<br>
-
-	<input placeholder="Phone Number"  style="width: 400px" />
-	<br>
-
-	<input placeholder="Company"  style="width: 400px" />
-	<br>
-
-	<div style="float: left">
-		<a href="details"><input type="button" value="Tell Me More"/></a>
-	</div>
-
-	<div style="float: right">
-		<a href="payment"><input type="button" value="Place Order"/></a>
-	</div>
-
-	<div style="clear: both"/>
-
+<form name="signup" method="post" class="input">
+	<table>
+		{{form.hidden_tag()}}
+			<tr>
+				<div>
+					{{form.name(placeholder="Name*")}}
+					{% for error in form.errors.name %}
+					<span style="color:red; position: relative;">[{{error}}]</span>
+					{% endfor %}
+				</div>
+			</tr>
+			<tr>
+				<div>
+					{{form.email(placeholder="Email*")}}
+					{% for error in form.errors.email %}
+					<span style="color:red; position: relative;">[{{error}}]</span>
+					{% endfor %}
+				</div>
+			</tr>
+			<tr>
+				<div>
+					{{form.phone(placeholder="Phone")}}
+				</div>
+			</tr>
+			<tr>
+				<div>
+					{{form.company(placeholder="Company Name")}}
+				</div>
+			</tr>
+			<br>
+	</table>
+	<p>
+		<input type="hidden" name="cmd" value="_xclick">
+		<input type="hidden" name="business" value="aarone@one-shore.com">
+		<input type="hidden" name="lc" value="US">
+		<input type="hidden" name="item_name" value="Cloud Test Environment">
+		<input type="hidden" name="amount" value="97.00">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="button_subtype" value="services">
+		<input type="hidden" name="no_note" value="0">
+		<input type="hidden" name="shipping" value="0.00">
+		<input type="hidden" name="email" value="{{form.email.data}}">
+		<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+		<input type="submit" value="Credit Card" style="position: absolute;" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<input type="image" name="paypal" border="0" src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" style="position: absolute; padding: 0px; align: top; left: 285px;" alt="PayPal - The safer, easier way to pay online">
+		<img alt="" border="" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">
+	</p>
 </form>
 {% endblock %}
