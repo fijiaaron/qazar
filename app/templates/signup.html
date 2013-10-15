@@ -7,34 +7,30 @@
 		{{form.hidden_tag()}}
 		<table>
 				<tr>
-				<div class="row"><td class="label" id="name" align="right">{{form.name.label}}<em>*</em>:</td>
-					<td align="left">
+				<div class="row">
+					{{form.name(placeholder="Name*")}}
 						{{form.name(class="inputfield")}}
 						{% for error in form.errors.fname %}
 						<span style="color:red; position: relative;">[{{error}}]</span>
 						{% endfor %}
-					</td>
 				</div></tr>
 				<tr>
-				<div class="row"><td class="label" id="email" align="right">{{form.email.label}}<em>*</em>:</td>
-					<td align="left">
+				<div class="row">
+					{{form.email(placeholder="Email*")}}
 						{{form.email(class="inputfield")}}
 						{% for error in form.errors.email %}
 						<span style="color:red; position: relative;">[{{error}}]</span>
 						{% endfor %}
-					</input></td>
 				</div></tr>
 				<tr>
-				<div class="row"><td class="label" id="phone" align="right">{{form.phone.label}}:</td>
-					<td align="left">
+				<div class="row">
+					{{form.phone(placeholder="Phone")}}
 						{{form.phone(class="inputfield")}}
-					</input></td>
 				</div></tr>
 				<tr>
-				<div class="row"><td class="label" id="company" align="right">{{form.company.label}}:</td>
-					<td align="left">
+				<div class="row">
+					{{form.company(placeholder="Company/Organization")}}
 						{{form.company(class="inputfield")}}
-					</input></td>
 				</div></tr>
 				<br>
 		</table>
