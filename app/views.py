@@ -25,15 +25,13 @@ def details():
     return render_template("details.html")
 
 @app.route('/register', methods = ['GET', 'POST'])
-def register(request):
-    form = Register(request.form)
-    if form.validate_on_submit() and request.form['submit'] == 'Credit Card':
-        flash('Thank you ' + form.name.data + '. Redirecting to payment page.')
-        return redirect('/payment')
-    elif form.validate_on_submit():
-        flash('Thank you ' + form.name.data + '. Redirecting to paypal.')
+def register():
+    form = Register()
+    if form.validate_on_submit():
         return redirect('https://www.paypal.com/cgi-bin/webscr')
-    return render_template('register.html', title = 'Register', form = form)
+    return render_template("register.html",
+         title = 'Register',
+         form = form)
 
 @app.route('/contact_confirmation')
 def contact_confirmation():
@@ -43,14 +41,6 @@ def contact_confirmation():
 def payment():
     return render_template("payment.html")
 
-@app.route('/creditcard_form', methods= ['GET', 'POST'])
-def creditcard_form():
-    form = Payment()
-    if form.validate_on_submit():
-        flash('Thank you for your payment. Redirecting to confirmation.')
-        return redirect('/payment_confirmation')
-    return render_template('creditcard_form.html', title = 'Credit Card Form', form = form)
-
 @app.route('/payment_confirmation')
 def payment_confirmation():
     return render_template('payment_confirmation.html')
@@ -59,9 +49,15 @@ def payment_confirmation():
 def paypal():
     return render_template("paypal.html")
 
-@app.route('/creditcard')
+@app.route('/creditcard', methods = ['GET', 'POST'])
 def creditcard():
-    return render_template("creditcard.html")
+    form = Payment()
+    if form.validate_on_submit():
+        flash('Thank you for your payment. Redirecting to confirmation page.')
+        return redirect('/payment_confirmation')
+    return render_template("creditcard.html",
+         title = 'Credit Card Form',
+         form = form)
 
 #Footer
 @app.route('/about')

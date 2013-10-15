@@ -1,16 +1,16 @@
-{% extends "layout.html" %}
+{% extends "payment.html" %}
 {% block content %}
 <form style="width: 412px">
-	{{Payment.hidden_tag()}}
+	{{form.hidden_tag()}}
 		<input placeholder="" style="width: 298px" /> 
 		<input placeholder="cvv" style="width: 85px" />
 		<br>
 		<div style="float:right">
 			<span style="font-size:1.5em"> Expiration</span>
 			
-			{{Payment.expmonth(placeholder="Month")}}
+			
 
-			{{Payment.expyear(placeholder="Year")}}
+			{{form.expyear(placeholder=form.expyear.label)}}
 		</div>
 
 		

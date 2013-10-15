@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
+
 {% block content %}
 <h1>Registration Form</h1>
 
-<form name="signup" method="post" class="input">
+<form name="submit" method="post" class="input" style="width: 350px;">
+	{{form.hidden_tag()}}
 	<table>
-		{{form.hidden_tag()}}
 			<tr>
 				<div>
 					{{form.name(placeholder="Name*")}}
@@ -34,20 +35,25 @@
 			<br>
 	</table>
 	<p>
-		<input type="hidden" name="cmd" value="_xclick">
+		<input type="hidden" name="cmd" value="_cart">
+		<input type="hidden" name="upload" value="1">
 		<input type="hidden" name="business" value="aarone@one-shore.com">
+		<input type="hidden" name="quantity" value="1">
 		<input type="hidden" name="lc" value="US">
 		<input type="hidden" name="item_name" value="Cloud Test Environment">
-		<input type="hidden" name="amount" value="97.00">
 		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="amount" value="99.00">
+		<input type="hidden" name="tax" value="0.00">
 		<input type="hidden" name="button_subtype" value="services">
 		<input type="hidden" name="no_note" value="0">
 		<input type="hidden" name="shipping" value="0.00">
+		<input type="hidden" name="first name" value="">
 		<input type="hidden" name="email" value="{{form.email.data}}">
 		<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
-		<input type="submit" value="Credit Card" style="position: absolute;" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<input type="image" name="paypal" border="0" src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" style="position: absolute; padding: 0px; align: top; left: 285px;" alt="PayPal - The safer, easier way to pay online">
-		<img alt="" border="" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">
+		<input type="submit" value="Sign Up" name="submit" style="position: relative;" border="0">
+		<br>
+		<input type="submit" value="Learn More" name="submit" style="position: relative;" border="0">
 	</p>
 </form>
+
 {% endblock %}
