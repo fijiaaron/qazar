@@ -9,7 +9,7 @@ class Provisioner():
         """
         """
         self.name_to_script = {"selenium": "juju deploy selenium", 
-                          "jenkins": "juju deploy jenkins"} # in place of provisioning for now
+                               "jenkins": "juju deploy jenkins"} # in place of provisioning for now
         logging.basicConfig(filename="provision.log", level=logging.DEBUG)
     def provision(self, env):
         """
@@ -26,7 +26,9 @@ class Provisioner():
         else:
             connection = sqlite3.connect("qazar.db")
             cursor = connection.cursor()
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        print(cursor.fetchall())
+        for charm in charms:
+            print self.name_to_script[charm["name"]]
+        #cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        #print(cursor.fetchall())
         connection.close()
 
