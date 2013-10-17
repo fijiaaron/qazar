@@ -11,6 +11,11 @@ class Helper():
     @app.route('/landing', methods = ['GET', 'POST'])
     def landing():
         form = Register()
+        if request.method == 'POST':
+            if request.form['submit'] == "Learn More":
+                return redirect('/details')
+            elif form.validate_on_submit() and request.form['submit'] == "Sign Up":
+                return redirect('/order')
         return render_template("landing.html",
                 title = 'Landing',
                 form = form)

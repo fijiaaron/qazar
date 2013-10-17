@@ -136,7 +136,7 @@ li {
         width: 500px;
         margin: 0;
 }
-#overlay {
+.overlay {
         visibility: hidden;
         position: absolute;
         left: 0px;
