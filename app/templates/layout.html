@@ -1,19 +1,36 @@
 <html>
     <head>
-        <title> Cloud Test Enviroments </title>
+        <title> Cloud Test Environments </title>
         <link href="/static/css/prototype.css" rel="stylesheet" type="text/css" media="screen" />
-                
+        <script type = "text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script type = "text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+                 <script type="text/javascript">
+                    $(function() {
+                        $( ".modal-form" ).dialog({
+                                autoOpen: false,
+                                height: screen.height/2, 
+                                width: screen.width/2,
+                                modal: true,
+                                draggable: false,
+                                closeOnEscape: true
+                        });
+
+                        $( "#get-started" )
+                            .button()
+                            .click(function(){
+                            $( ".modal-form" ).dialog( "open" );
+                        });
+
+                        $( ".ui-widget-overlay" ).live("click", function(){
+                            $( ".modal-form" ).dialog("close");
+                        });
+                    });
+                </script>
                 <style>
                     * { margin: 0; padding: 0;}
                     table { border-collapse: collapse; }
                     table, td { vertical-align: top; }
                 </style>
-        <script>
-            function popUp()
-            {
-
-            }
-        </script>
     </head>
     <body>
         <div class="wrapper">
@@ -22,7 +39,8 @@
                     <td style="width: 900px; border-right: 3px dashed gray;">
                         <div class="content" style="max-width: 900px; padding: 25px; line-height: 1.5">
                             <!-- end header -->
-                            {% block content %}{% endblock %}
+                            {% block content %}
+                            {% endblock %}
                             <!-- begin footer -->
                         </div><!-- end content -->
                         <div class="push"></div>

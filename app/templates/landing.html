@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-
 <h1> Building Sandcastles in the Clouds </h1>
 
 <table>
@@ -47,7 +46,7 @@
 	</p>
 
 	<div style="float:right">
-		<a href="register"><input type="button" value="Get Started"/></a>
+		<a href="register"><button id="get-started"/>Get Started</a>
 	</div>
 
 </td>
@@ -93,5 +92,6 @@
 </td>
 </tr>
 </table>
+{% include "register.html" %}
 
 {% endblock %}

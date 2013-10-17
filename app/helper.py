@@ -8,9 +8,12 @@ class Helper():
     def index():
         return render_template("index.html")
 
-    @app.route('/landing')
+    @app.route('/landing', methods = ['GET', 'POST'])
     def landing():
-        return render_template("landing.html")
+        form = Register()
+        return render_template("landing.html",
+                title = 'Landing',
+                form = form)
 
     @app.route('/contact')
     def contact():
@@ -55,6 +58,7 @@ class Helper():
              form = form)
     @app.route('/order')
     def info():
+        form = Register()
         return render_template("order.html")
 
 #Footer
