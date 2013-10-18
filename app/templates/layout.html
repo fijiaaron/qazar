@@ -17,16 +17,17 @@
                         width: 780,
                         modal: true,
                         position: {
-                            my: 'top',
-                            at: 'top',
-                            of: $('.wrapper')
-                        }
+                            my: 'center',
+                            at: 'center',
+                            of: window,
+                            collision: 'fit'
+                        },
                 });
 
                 $("#get-started")
                 .button()
                 .click(function(){
-                    $("#registration").dialog("open");
+                    $( "#registration" ).dialog("open");
                 });
 
                 $( '.ui-widget-overlay' ).live('click', function(){
