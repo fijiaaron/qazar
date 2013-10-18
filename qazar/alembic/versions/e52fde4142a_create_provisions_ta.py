@@ -17,9 +17,9 @@ import sqlalchemy as sa
 def upgrade():
     op.create_table(
         'provisions',
-        sa.Column('id', sa.Integer(), primary_key=True, autoincrement=True)
-        sa.Column('user_id', sa.Integer())
-        sa.Column('ip_address', sa.VARCHAR(15))
+        sa.Column('id', sa.Integer(), primary_key=True, autoincrement=True),
+        sa.Column('user_id', sa.Integer()),
+        sa.Column('ip_address', sa.VARCHAR(15)),
         sa.Column('status', sa.Integer())
     )
 

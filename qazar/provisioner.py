@@ -1,5 +1,5 @@
-import os
 import logging
+import subprocess
 
 class Provisioner():
     """
@@ -9,8 +9,9 @@ class Provisioner():
         """
         self.name_to_script = {"selenium": "juju deploy selenium", 
                                "jenkins": "juju deploy jenkins"} # in place of provisioning for now
-        logging.basicConfig(filename="provision.log", level=logging.DEBUG)
+        logging.basicConfig(filename='provision.log', filemode='w', level=logging.DEBUG)
         logging.info("configuring provisioning...")
+        subprocess.call(["alembic", "upgrade", "head"]) #create provisions table
     def provision(self, env):
         """
         """
@@ -19,6 +20,7 @@ class Provisioner():
             print self.name_to_script[charm["name"]]
         logging.info("determing provisioning script...")
         logging.info("creating database entry with requested status...")
+        #subprocess.call(["alembic", "upgrade", "head"])
         logging.info("running provisioning script...")
 
 
