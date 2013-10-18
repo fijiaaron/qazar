@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1> Building Sandcastles in the Clouds </h1>
 {{ form.hidden_tag() }}
+{% include "register.html" %}
+<h1> Building Sandcastles in the Clouds </h1>
 <table>
 <tr>
 <td style="max-width: 450px; height: 100%">
@@ -92,6 +93,6 @@
 </td>
 </tr>
 </table>
-{% include "register.html" %}
+
 
 {% endblock %}

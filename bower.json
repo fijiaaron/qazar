@@ -1,0 +1,18 @@
+{
+  "name": "modal",
+  "version": "0.0.0",
+  "authors": [
+    "acthomas06"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "css-modal": "~1.0.4"
+  }
+}

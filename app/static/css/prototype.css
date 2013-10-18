@@ -131,18 +131,16 @@ li {
         color: gray;
 }
 .modal-form {
-        position: absolute;
+        position: relative;
         background-color: #DDD;
-        width: 500px;
+        width: 300px;
         margin: 0;
+        display: inline;
 }
-.overlay {
-        visibility: hidden;
-        position: absolute;
-        left: 0px;
-        top: 0px;
+.ui-widget-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
         width:100%;
         height:100%;
-        text-align:center;
-        z-index: 1000;
 }

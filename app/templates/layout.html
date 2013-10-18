@@ -9,6 +9,31 @@
                     table { border-collapse: collapse; }
                     table, td { vertical-align: top; }
                 </style>
+        <script>
+            $(function(){
+                $( "#registration" ).dialog({
+                        autoOpen: false,
+                        height: 450,
+                        width: 780,
+                        modal: true,
+                        position: {
+                            my: 'top',
+                            at: 'top',
+                            of: $('.wrapper')
+                        }
+                });
+
+                $("#get-started")
+                .button()
+                .click(function(){
+                    $("#registration").dialog("open");
+                });
+
+                $( '.ui-widget-overlay' ).live('click', function(){
+                    $( '#registration' ).dialog("close");
+                });           
+            });    
+        </script>
     </head>
     <body>
         <div class="wrapper">
