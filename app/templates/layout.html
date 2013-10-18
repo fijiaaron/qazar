@@ -16,22 +16,20 @@
                         height: 450,
                         width: 780,
                         modal: true,
-                        position: {
-                            my: 'center',
-                            at: 'center',
-                            of: window,
-                            collision: 'fit'
-                        },
-                });
+                        hide: 'fade',
+                        show: 'fade',
+                        position: 'top',
+                        draggable: true
+                  });
 
                 $("#get-started")
                 .button()
                 .click(function(){
-                    $( "#registration" ).dialog("open");
+                    $( "#registration" ).dialog("open")
                 });
 
-                $( '.ui-widget-overlay' ).live('click', function(){
-                    $( '#registration' ).dialog("close");
+                $( '.ui-widget-overlay' ).live('click', function(event){
+                        $( '#registration' ).dialog("close");
                 });           
             });    
         </script>

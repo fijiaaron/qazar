@@ -131,14 +131,17 @@ li {
         color: gray;
 }
 .modal-form {
-        position: absolute;
-        background-color: #DDD;
+        position: fixed;
+        background-color: #EEE;
         width: 300px;
         margin: 0;
-        display: inline;
+        border: 2em;
+        border-color: #DDD;
+        border-radius: 10;
 }
 .ui-widget-overlay {
-        position: fixed;
+        position: absolute;
+        visibility: hidden;
         left: 0;
         top: 0;
         width:100%;
