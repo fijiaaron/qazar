@@ -1,11 +1,12 @@
 <div id="registration" class="reveal-modal">
-	<form style="width: 400px" name="submit" method="post">
+	<h1 style="padding: 4px;"> Registration </h1>
+	<form style="width: 300px" name="registration" method="post">
 		{{form.hidden_tag()}}
-
 			{{form.name(placeholder="Name*")}}
 			{% for error in form.errors.name %}
 			<span style="color:red; position: relative;">[{{error}}]</span>
 			{% endfor %}
+
 		
 			{{form.email(placeholder="Email*")}}
 			{% for error in form.errors.email %}
@@ -15,10 +16,15 @@
 			{{form.phone(placeholder="Phone")}}
 		
 			{{form.company(placeholder="Company Name")}}
+			{% if form.errors %}
+			{{form.hasErrors(value="true", type="hidden")}}
+			{% endif %}
 		<p>
-			<button type="submit" value="Sign Up" name="submit" style="position: relative;" border="0">Sign Up </button>
-				<br>
-			<a href="details" type="submit" value="Learn More" name="submit" style="position: relative;" border="0">Learn More</a>
+			<br>
+				<a class="close-reveal-modal">&#215;</a>
+				<input type="submit" name="submit" value="Sign Up">
+					<br>
+				<input type="submit" value="Learn More" name="submit" style="position: relative; float: right;" border="0">Learn More</a>
 		</p>
 	</form>
 </div>

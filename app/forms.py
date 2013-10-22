@@ -6,7 +6,9 @@ class Register(Form):
     name= TextField('Name', validators= [Required("Please enter your name.")])
     email= TextField('Email', validators= [Required("Please enter your e-mail.")])
     phone= TextField('Phone')
-    company= TextField('Company')    
+    company= TextField('Company')
+    hasErrors= TextField('hasErrors')
+
 class Payment(Form):
  	ccnumber= TextField('Credit Card Number', validators= [Required()])
  	cvv= TextField('CVV', validators= [Required()])

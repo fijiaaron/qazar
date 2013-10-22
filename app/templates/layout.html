@@ -3,13 +3,9 @@
         <title> Cloud Test Environments </title>
         <link href="static/css/prototype.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="static/css/reveal.css" rel="stylesheet" type="text/css">
-        <script type ="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-        <script type ="text/javascript" src="jquery.reveal.js"></script>
-                <style>
-                    * { margin: 0; padding: 0;}
-                    table { border-collapse: collapse; }
-                    table, td { vertical-align: top; }
-                </style>
+        <script type ="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+        <script type ="text/javascript" src="static/js/jquery.reveal.js"></script>
+        
                 <script>
                 $('#registration').reveal({
                      animation: 'fadeAndPop',                   //fade, fadeAndPop, none
@@ -17,9 +13,16 @@
                      closeonbackgroundclick: true,              //if you click background will modal close?
                      dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
                 });
+
+                function showModal() {
+                    if(window.document.forms["registration"].hasErrors)
+                    {
+                      $('#registration').reveal();
+                    }
+                }
                 </script>
     </head>
-    <body>
+    <body onload="showModal();">
         <div id="parent"></div>
         <div class="wrapper">
             <table>
