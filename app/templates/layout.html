@@ -14,10 +14,25 @@
                      dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
                 });
 
+                $('#contact').reveal({
+                     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
+                     animationspeed: 300,                       //how fast animtions are
+                     closeonbackgroundclick: true,              //if you click background will modal close?
+                     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+                });
+
+
                 function showModal() {
-                    if(window.document.forms["registration"].hasErrors)
+                    var form = $('div').find('form');
+
+                    if(form.attr('name').has('contact') && form.find('span'))
                     {
-                      $('#registration').reveal();
+                        $('#contact').reveal();
+                    }
+                    
+                    if(form.attr('name').has('registration') && form.find('span'))
+                    {
+                        $('#registration').reveal();
                     }
                 }
                 </script>

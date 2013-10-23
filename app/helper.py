@@ -11,34 +11,50 @@ class Helper():
     @app.route('/landing', methods = ['GET', 'POST'])
     def landing():
         form = Register()
+        if request.path == "/landing#contact":
+            form = Contact()
         if request.method == 'POST':
             if request.form['submit'] == "Learn More":
                 return redirect('/details')
-            elif form.validate_on_submit() and request.form['submit'] == "Sign Up":
+            if form.validate_on_submit() and request.form['submit'] == "Sign Up":
                 return redirect('/order')
+            if form.validate_on_submit() and request.form['submit'] == "Send":
+                return redirect('/contact_confirmation')
         return render_template("landing.html",
                 title = 'Landing',
                 form = form)
+       
 
-    @app.route('/contact')
+    @app.route('/landing#contact', methods = ['GET', 'POST'])
     def contact():
-        return render_template("contact.html")
+        contact = Contact()
+        if contact.validate_on_submit():
+            return redirect('/contact_confirmation')
+        return render_template("contact_form.html", title='Contact Form', form=contact)
+
+    @app.route('/contact_form', methods = ['GET', 'POST'])
+    def contact_form():
+        contact = Contact()
+        if request.method == 'POST':
+            if contact.validate_on_submit():
+                return redirect('/contact_confirmation')
+        return render_template("contact_form.html", title='Contact Form', form=contact)
 
     @app.route('/details')
     def details():
         return render_template("details.html")
 
-    @app.route('/register', methods = ['GET', 'POST'])
+    @app.route('/landing#register', methods = ['GET', 'POST'])
     def register():
-        form = Register()
+        registration = Register()
         if request.method == 'POST':
             if request.form['submit'] == "Learn More":
                 return redirect('/details')
-            elif form.validate_on_submit() and request.form['submit'] == "Sign Up":
+            elif registration.validate_on_submit() and request.form['submit'] == "Sign Up":
                 return redirect('/order')
         return render_template("register.html",
              title = 'Register',
-             form = form)
+             form = registration)
 
     @app.route('/contact_confirmation')
     def contact_confirmation():

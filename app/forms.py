@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form, validators
 from wtforms import TextField, BooleanField, SelectField, HiddenField
-from wtforms.validators import Required, Length
+from wtforms.validators import Required, Length, Regexp, Optional
 
 class Register(Form):
     name= TextField('Name', validators= [Required("Please enter your name.")])
@@ -20,3 +20,9 @@ class Payment(Form):
  	city= TextField('City', validators = [Required()])
  	state= TextField('State', validators = [Required()])
  	zipcode= TextField('Zip Code', validators = [Required()])
+
+class Contact(Form):
+ 	name= TextField((u'Name'), [validators.Required("Please enter your name.")])
+ 	email= TextField((u'Email'), [validators.Required("Please enter your email."), validators.email("Your email is invalid")])
+ 	phone= TextField((u'Phone'), [validators.Regexp("Not a valid number."), validators.Optional()])
+ 	hasErrors= TextField('hasErrors')

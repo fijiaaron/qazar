@@ -4,13 +4,13 @@
 		{{form.hidden_tag()}}
 			{{form.name(placeholder="Name*")}}
 			{% for error in form.errors.name %}
-			<span style="color:red; position: relative;">[{{error}}]</span>
+			<span class="register_submit" style="color:red; position: relative;">[{{error}}]</span>
 			{% endfor %}
 
 		
 			{{form.email(placeholder="Email*")}}
 			{% for error in form.errors.email %}
-			<span style="color:red; position: relative;">[{{error}}]</span>
+			<span class="register_submit" style="color:red; position: relative;">[{{error}}]</span>
 			{% endfor %}
 		
 			{{form.phone(placeholder="Phone")}}
@@ -22,9 +22,9 @@
 		<p>
 			<br>
 				<a class="close-reveal-modal">&#215;</a>
-				<input type="submit" name="submit" value="Sign Up">
+					<input class="register_submit" type="submit" name="submit" value="Sign Up">
 					<br>
-				<input type="submit" value="Learn More" name="submit" style="position: relative; float: right;" border="0">Learn More</a>
+				<input type="submit" value="Learn More" name="submit" style="position: relative; float: right;" border="0">
 		</p>
 	</form>
 </div>
