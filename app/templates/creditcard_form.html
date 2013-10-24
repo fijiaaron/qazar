@@ -1,17 +1,16 @@
+{% extends "payment.html" %}
+{% block content %}
 <form style="width: 412px">
-	
-		<input placeholder="Credit Card Number" style="width: 298px" /> 
+	{{form.hidden_tag()}}
+		<input placeholder="" style="width: 298px" /> 
 		<input placeholder="cvv" style="width: 85px" />
 		<br>
 		<div style="float:right">
 			<span style="font-size:1.5em"> Expiration</span>
-			<select>
-				<option placeholder="foo"> Month </option>
-			</select>
+			
+			
 
-			<select>
-				<option> Year </option>
-			</select>
+			{{form.expyear(placeholder=form.expyear.label)}}
 		</div>
 
 		
@@ -27,6 +26,7 @@
 		<input placeholder="Zip Code" style="width: 400px" /> 
 
 			<div style="float: right;">
-			<a href="/payment_confirmation.html"><input type="button" value="Finish"/></a>
+			<a href="/payment_confirmation"><input type="button" value="Finish"/></a>
 		</div>
 </form>
+{% endblock %}

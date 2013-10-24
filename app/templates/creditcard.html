@@ -3,4 +3,54 @@
 
 <h1>Credit Card Form</h1>
 
-{% include "creditcard_form.html" %}
+<form style="width: 425px">
+	{{form.hidden_tag()}}
+		<div style="float: right">
+		{{form.ccnumber(size=17, placeholder="Credit Card Number")}}
+		{% for error in form.errors.ccnumber %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		{{form.cvv(size=3, placeholder="CVV")}}
+		{% for error in form.errors.cvv %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		</div>
+		<div style="float:left">
+			<span style="font-size:1.5em; float: right;"> Expiration</span>
+		</div>
+		<div style="position: relative;float: right;">
+		{{form.expmonth(placeholder="Month")}}
+		{% for error in form.errors.expmonth %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		{{form.expyear(placeholder="Year")}}
+		{% for error in form.errors.expyear %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		</div>
+		{{form.name(size=25, placeholder="Card Holder Name")}}
+		{% for error in form.errors.name%}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		{{form.address1(size=25, placeholder="Address Line 1")}}
+		{% for error in form.errors.address1 %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		{{form.address2(size=25, placeholder="Address Line 2")}}
+		{{form.city(size=25, placeholder="City")}}
+		{% for error in form.errors.city %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		{{form.state(size=25, placeholder="State")}}
+		{% for error in form.errors.state%}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		{{form.zipcode(size=25, placeholder="Zip Code")}}
+		{% for error in form.errors.zipcode %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+			<div style="float: right;">
+			<a href="/payment_confirmation"><input type="button" value="Finish"/></a>
+		</div>
+</form>
+{% endblock %}

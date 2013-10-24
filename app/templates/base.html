@@ -1,0 +1,46 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Qazar Cloud Testing</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+  </head>
+ <script type="text/javascript">
+    // Popup window code
+    function newPopup(url) {
+        popupWindow = window.open(
+            url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+    }
+</script>
+<script 
+    data-env="sandbox" 
+    data-callback="http://www.qazar.net/confirmation" 
+    data-tax="0.00" 
+    data-shipping="0.00" 
+    data-currency="USD" 
+    data-amount="99.00" 
+    data-quantity="1" 
+    data-name="Cloud Test Environment" 
+    data-button="buynow" src="paypal-button.min.js?merchant=aarone@one-shore.com, https://raw.github.com/paypal/JavaScriptButtons/master/dist/paypal-button.min.js">
+</script>
+  <body>
+    <div class="maintitle">Qazar Cloud Testing </div> 
+    <div class="linklist">
+        <a class="links" href="/index"> Home </a>
+        <a class="links" href="javascript:newPopup('/signup');"> Sign Up </a>
+        <a class="links" href="/info"> Learn More </a>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+	<li> {{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>

@@ -1,24 +1,48 @@
 <html>
     <head>
-        <title> Cloud Test Enviroments </title>
-        <link href="{{url_for('static', filename='prototype.css')}}" rel="stylesheet" type="text/css" media="screen" />
-                <style>
-                    {% include 'prototype.css'%}
-                </style>
-                <style>
-                    * { margin: 0; padding: 0;}
-                    table { border-collapse: collapse; }
-                    table, td { vertical-align: top; }
-                </style>
+        <title> Cloud Test Environments </title>
+        <link href="static/css/prototype.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="static/css/reveal.css" rel="stylesheet" type="text/css">
+        <script type ="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+        <script type ="text/javascript" src="static/js/jquery.reveal.js"></script>
+        
+                <script>
+                $('#registration').reveal({
+                     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
+                     animationspeed: 300,                       //how fast animtions are
+                     closeonbackgroundclick: true,              //if you click background will modal close?
+                     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+                });
+
+                $('#contact').reveal({
+                     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
+                     animationspeed: 300,                       //how fast animtions are
+                     closeonbackgroundclick: true,              //if you click background will modal close?
+                     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+                });
+
+
+                function showModal() {
+                    if(window.document.forms['registration'].hasErrors && $('.modal-form').closest('div#registration'))
+                    {
+                        $('#registration').reveal();
+                    }
+                    if(window.document.forms['contact'].hasErrors && $('.modal-form').closest('div#contact'))
+                    {
+                        $('#contact').reveal();
+                    }
+                }
+                </script>
     </head>
-    <body>
+    <body onload="showModal();">
         <div class="wrapper">
             <table>
                 <tr>
                     <td style="width: 900px; border-right: 3px dashed gray;">
                         <div class="content" style="max-width: 900px; padding: 25px; line-height: 1.5">
                             <!-- end header -->
-                            {% block content %}{% endblock %}
+                            {% block content %}
+                            {% endblock %}
                             <!-- begin footer -->
                         </div><!-- end content -->
                         <div class="push"></div>
@@ -29,6 +53,8 @@
                 </tr>
             </table>
         </div> <!-- end wrapper -->
+        <br>
+        <br>
         <div class="footer" style="border-top: 1px solid gray; background: #ddd">
             <ul class="menu" style="margin: 1em">
                 <li>

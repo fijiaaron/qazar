@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-
+{% include "register.html" %}
+{% include "contact_Form.html" %}
+{{ form.hidden_tag() }}
 <h1> Building Sandcastles in the Clouds </h1>
+
 
 <table>
 <tr>
@@ -47,7 +50,7 @@
 	</p>
 
 	<div style="float:right">
-		<a href="register"><input type="button" value="Sign Up"/></a>
+		<a href="#register" data-reveal-id="registration"/>Get Started</a>
 	</div>
 
 </td>
@@ -85,7 +88,7 @@
 		</ul>
 
 		<div style="text-align: center">
-            <a href="contact"><input type="button" value="Contact Us"/></a>
+            <a href="#contact" data-reveal-id="contact" />Contact Us</a>
 		</div>
 	</div>
 	
@@ -93,5 +96,6 @@
 </td>
 </tr>
 </table>
+
 
 {% endblock %}

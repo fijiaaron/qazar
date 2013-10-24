@@ -1,19 +1,32 @@
-<form style="width: 412px">
+<div id="contact" class="reveal-modal">
+	<h1>Contact Us</h1>
+	<form class="modal-form" id="contact_form" style="width: 300px" name="contact" method="post">
+		{{form.hidden_tag()}}
+			{{form.name(placeholder="Name*")}}
+			{% for errors in form.errors.name %}
+			<span class="contact_submit" style="color:red; position: relative;">[{{error}}]</span>
+			{% endfor %}
+			
+			{{form.email(placeholder="Email*")}}
+			{% for errors in form.errors.email %}
+			<span class="contact_submit" style="color:red; position: relative;">[{{error}}]</span>
+			{% endfor %}
 
-	<input placeholder="Name" style="width: 400px" /> 
-	<br>
+			{{form.phone(placeholder="Phone")}}
+			{% for errors in form.errors.phone %}
+			<span class="contact_submit" style="color:red; position: relative;">[{{error}}]</span>
+			{% endfor %}
+			
+			{% if form.errors %}
+			{{form.hasErrors(value="true", type="hidden")}}
+			{% endif %}
 
-	<input placeholder="Email Address" style="width: 400px" />
-	<br>
+		<textarea placeholder="What can we do for you?" style="width: 400px; height: 250px" ></textarea>
+		<br>
+		<a class="close-reveal-modal">&#215;</a>
 
-	<input placeholder="Phone Number"  style="width: 400px" />
-	<br>
-
-	<textarea placeholder="What can we do for you?" style="width: 400px; height: 250px" ></textarea>
-	<br>
-
-	<div style="float: right">
-		<a href="contact_confirmation"><input type="button" value="Send"/></a>
-	</div>
-
-</form>
+		<div style="float: right">
+			<input class="contact_submit" type="submit" name="submit" value="Send"/>
+		</div>
+	</form>
+</div>
