@@ -1,6 +1,6 @@
 <div id="contact" class="reveal-modal">
 	<h1>Contact Us</h1>
-	<form id="contact_form" style="width: 300px" name="contact" method="post">
+	<form class="modal-form" id="contact_form" style="width: 300px" name="contact" method="post">
 		{{form.hidden_tag()}}
 			{{form.name(placeholder="Name*")}}
 			{% for errors in form.errors.name %}

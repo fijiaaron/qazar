@@ -23,22 +23,18 @@
 
 
                 function showModal() {
-                    var form = $('div').find('form');
-
-                    if(form.attr('name').has('contact') && form.find('span'))
-                    {
-                        $('#contact').reveal();
-                    }
-                    
-                    if(form.attr('name').has('registration') && form.find('span'))
+                    if(window.document.forms['registration'].hasErrors && $('.modal-form').closest('div#registration'))
                     {
                         $('#registration').reveal();
+                    }
+                    if(window.document.forms['contact'].hasErrors && $('.modal-form').closest('div#contact'))
+                    {
+                        $('#contact').reveal();
                     }
                 }
                 </script>
     </head>
     <body onload="showModal();">
-        <div id="parent"></div>
         <div class="wrapper">
             <table>
                 <tr>

@@ -1,6 +1,6 @@
 <div id="registration" class="reveal-modal">
 	<h1 style="padding: 4px;"> Registration </h1>
-	<form style="width: 300px" name="registration" method="post">
+	<form class="modal-form" style="width: 300px" name="registration" method="post">
 		{{form.hidden_tag()}}
 			{{form.name(placeholder="Name*")}}
 			{% for error in form.errors.name %}

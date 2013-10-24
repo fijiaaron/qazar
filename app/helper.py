@@ -1,6 +1,6 @@
 from flask import render_template, redirect, request
 from app import app
-from forms import Register, Payment
+from forms import Register, Payment, Contact
 
 class Helper():
     @app.route('/')
@@ -9,20 +9,22 @@ class Helper():
         return render_template("index.html")
 
     @app.route('/landing', methods = ['GET', 'POST'])
-    def landing():
+    def register_form():
         form = Register()
-        if request.path == "/landing#contact":
+        if request.path == '/landing#contact':
             form = Contact()
-        if request.method == 'POST':
+        if request.method == 'POST' and Contact():
+            if form.validate_on_submit() and request.form['submit'] == "Send":
+                return redirect('/contact_confirmation')
+        if request.method == 'POST' and Register():
             if request.form['submit'] == "Learn More":
                 return redirect('/details')
             if form.validate_on_submit() and request.form['submit'] == "Sign Up":
                 return redirect('/order')
-            if form.validate_on_submit() and request.form['submit'] == "Send":
-                return redirect('/contact_confirmation')
         return render_template("landing.html",
                 title = 'Landing',
                 form = form)
+
        
 
     @app.route('/landing#contact', methods = ['GET', 'POST'])
