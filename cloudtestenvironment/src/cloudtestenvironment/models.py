@@ -20,7 +20,7 @@ class Registration(db.Model):
 		return '<Registration id:%s>' % self.id
 
 
-class Contact(db.Model)
+class Contact(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(40))
 	email = db.Column(db.String(40))
