@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+	ServerName prototype.qazar.net
+
+	DocumentRoot /dev/qazar/site/prototype/public
+
+	<Directory /dev/qazar/site/prototype/public>
+		AllowOverride all
+	</Directory>
+
+</VirtualHost>

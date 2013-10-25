@@ -1,0 +1,5 @@
+#.htaccess for prototype.qazar.net
+
+ForceType application/x-httpd-php
+Php_value auto_prepend_file ./parts/header.html
+Php_value auto_append_file ./parts/footer.html
