@@ -20,3 +20,4 @@ class ContactForm(Form):
 	email = TextField('Email', validators = [Required("Please enter your email address"), validators.email("Your email is not valid")])
 	phone = TextField('Phone', validators = [Optional(), validators.Regexp(phone_regex, message="Your phone number is not valid")])
 	message = TextAreaField('Message')
+	send = SubmitField()

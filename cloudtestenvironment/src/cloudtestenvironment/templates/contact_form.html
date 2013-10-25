@@ -1,25 +1,25 @@
 <h2> Contact Form </h2>
 
-<form id="contact_form" style="width: 300px" name="contact" method="post" action="#contact">
+<form id="contact_form" class="contact-form" style="width: 300px" name="contact" method="post" action="#contact">
 	{{ contact_form.hidden_tag() }}
 
 	<div>
 	{{ contact_form.name(placeholder="Your Name") }}
-	{% for errors in contact_form.errors.name %}
+	{% for error in contact_form.errors.name %}
 	<span class="form_error">{{error}}</span>
 	{% endfor %}
 	</div>
 
 	<div>
 	{{ contact_form.email(placeholder="Email Address") }}
-	{% for errors in contact_form.errors.email %}
+	{% for error in contact_form.errors.email %}
 	<span class="form_error">{{error}}</span>
 	{% endfor %}
 	</div>
 
 	<div>
 	{{ contact_form.phone(placeholder="Phone Number") }}
-	{% for errors in contact_form.errors.phone %}
+	{% for error in contact_form.errors.phone %}
 	<span class="form_error">{{error}}</span>
 	{% endfor %}
 	</div>

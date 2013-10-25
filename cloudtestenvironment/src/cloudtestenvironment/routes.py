@@ -21,14 +21,13 @@ def landing():
 
 @app.route('/landing', methods=['POST'])
 def landing_submit():
-	registration_form = RegistrationForm()
-
-	if registration_form.validate_on_submit(): 
+	registration_form = RegistrationForm() 
 		#TODO: save registration
 
-		if registration_form.tell_me_more.data == True:
+	if registration_form.tell_me_more.data == True:
 			return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
-		if registration_form.sign_up.data == True:
+	if registration_form.sign_up.data == True:
+		if registration_form.validate_on_submit():
 			return redirect(url_for('order', _anchor='registered'))
 
 	contact_form = ContactForm()
