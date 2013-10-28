@@ -1,0 +1,37 @@
+<h2>Registration Form</h2>
+
+<form id="registration-form" class="registration-form" name="registration-form" method="post" action="#register">
+
+	{{ registration_form.hidden_tag() }}
+
+	{% for error in registration_form.errors.name %}
+		<span class="form_error" >{{ error }}</span>
+	{% endfor %}
+	{{ registration_form.name(placeholder="Your Name") }}
+
+	{% for error in registration_form.errors.email %}
+		<span class="form_error">{{error}}</span>
+	{% endfor %}
+	{{ registration_form.email(placeholder="Email Address") }}
+
+	{% for error in registration_form.errors.phone %}
+		<span class="form_error">{{error}}</span>
+	{% endfor %}
+	{{ registration_form.phone(placeholder="Phone Number") }}
+
+	{% for error in registration_form.errors.company %}
+		<span class="form_error">{{error}}</span>
+	{% endfor %}
+	{{ registration_form.company(placeholder="Company Name") }}
+
+	<div style="float: left">
+		{{ registration_form.tell_me_more(value="Tell Me More") }}
+	</div>
+
+	<div style="float: right">
+		{{ registration_form.sign_up(value="Sign Up") }}
+	</div>
+
+	<div style="clear: both"/>
+
+</form>
