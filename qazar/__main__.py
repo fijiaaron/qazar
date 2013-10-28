@@ -14,5 +14,5 @@ else:
             env_obj = json.loads(env_file.read())
 
 sys.stdout.write(json.dumps(env_obj)) #used for testing
-#p = Provisioner()
-#p.provision(env_obj)
+p = Provisioner()
+p.provision(env_obj)

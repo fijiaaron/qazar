@@ -28,8 +28,18 @@ class Helper():
         return render_template("contact_confirmation.html")
 
     @app.route('/payment')
-    def payment_confirmation():
+    def payment():
         return render_template("payment.html")
+
+    @app.route('/payment_confirmation')
+    def create_test_environment():
+        import sys
+        sys.path.insert(0, '/Users/billyLee/Documents/webdev/qazar/')
+        from flask import request
+        from qazar.provisioner import Provisioner
+        p = Provisioner()
+        p.provision(request.remote_addr)
+        return render_template("payment_confirmation.html")
 
     @app.route('/paypal')
     def paypal():

@@ -5,4 +5,3 @@ app = Flask(__name__)
 from app.basecontroller import BaseController
 
 test = BaseController()
-
