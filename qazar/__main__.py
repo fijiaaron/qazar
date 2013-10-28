@@ -15,4 +15,4 @@ else:
 
 sys.stdout.write(json.dumps(env_obj)) #used for testing
 p = Provisioner()
-p.provision(env_obj)
+p.provision(env=env_obj)

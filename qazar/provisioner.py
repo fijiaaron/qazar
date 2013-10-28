@@ -12,7 +12,7 @@ class Provisioner():
         logging.info("configuring provisioning...")
         self.engine = set_up()
 
-    def provision(self, ip_address):
+    def provision(self, ip_address, env=None):
         """
         """
         logging.info("determing provisioning script...")
