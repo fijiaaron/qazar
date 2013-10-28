@@ -68,9 +68,24 @@ def payment_confirmation(status):
 	content += " status: " + status
 
 @app.route('/details')
-@app.route('/details.html')
+@app.route('/details', methods=['GET'])
 def details():
-	content = render_template("details.html")
+	registration_form = RegistrationForm()
+
+	content = render_template('details.html', registration_form=registration_form)
+	return content
+
+@app.route('/details')
+@app.route('/details.html', methods=['POST'])
+def details_submit():
+
+	registration_form = RegistrationForm()
+
+	if registration_form.sign_up.data == True:
+		if registration_form.validate_on_submit():
+			return redirect(url_for('order'))
+
+	content = render_template('details.html', registration_form=registration_form)
 	return content
 
 
