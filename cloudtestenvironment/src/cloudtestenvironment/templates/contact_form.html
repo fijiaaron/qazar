@@ -1,34 +1,27 @@
 <h2> Contact Form </h2>
 
-<form id="contact_form" class="contact-form" style="width: 300px" name="contact" method="post" action="#contact">
+<form id="contact-form" class="contact-form" name="contact-form" method="post" action="#contact">
+	
 	{{ contact_form.hidden_tag() }}
 
-	<div>
-	{{ contact_form.name(placeholder="Your Name") }}
 	{% for error in contact_form.errors.name %}
-	<span class="form_error">{{error}}</span>
+		<span class="form_error">{{error}}</span>
 	{% endfor %}
-	</div>
+	{{ contact_form.name(placeholder="Your Name") }}
 
-	<div>
-	{{ contact_form.email(placeholder="Email Address") }}
 	{% for error in contact_form.errors.email %}
-	<span class="form_error">{{error}}</span>
+		<span class="form_error">{{error}}</span>
 	{% endfor %}
-	</div>
+	{{ contact_form.email(placeholder="Email Address") }}
 
-	<div>
-	{{ contact_form.phone(placeholder="Phone Number") }}
 	{% for error in contact_form.errors.phone %}
-	<span class="form_error">{{error}}</span>
+		<span class="form_error">{{error}}</span>
 	{% endfor %}
-	</div>
+	{{ contact_form.phone(placeholder="Phone Number") }}
 
-	<div>
 	{{ contact_form.message(placeholder="What can we do for you?")}}
-	</div>
 
 	<div style="float: right">
-		<input type="submit" name="Send" value="Send"/>
+	{{ contact_form.send(value="Send") }}
 	</div>
 </form>
