@@ -11,7 +11,7 @@ def index():
 
 
 @app.route('/landing')
-@app.route('/landing.html', methods=['GET'])
+@app.route('/landing', methods=['GET'])
 def landing():
 	registration_form=RegistrationForm()
 	contact_form=ContactForm()
@@ -21,20 +21,21 @@ def landing():
 
 @app.route('/landing', methods=['POST'])
 def landing_submit():
-	registration_form = RegistrationForm()
-
-	if registration_form.validate_on_submit(): 
+	registration_form = RegistrationForm() 
 		#TODO: save registration
 
-		if registration_form.tell_me_more.data == True:
-			return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
-		if registration_form.sign_up.data == True:
-			return redirect(url_for('order', _anchor='registered'))
+	if registration_form.tell_me_more.data == True:
+			return redirect(url_for('details')) #TODO: we can't remove the anchor
+	if registration_form.sign_up.data == True:
+		if registration_form.validate_on_submit():
+			return redirect(url_for('order'))
 
 	contact_form = ContactForm()
-	if contact_form.validate_on_submit():
-		# TODO: save message
-		return "message sent"
+
+
+	if contact_form.send.data == True:
+		if contact_form.validate_on_submit():
+			return redirect('contact')
 
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
 	return content
@@ -87,19 +88,18 @@ def whitepaper_download(register):
 	content += " download " + register
 	return content
 
-@app.route('/contact', methods=['GET'])
-@app.route('/contact.html', methods=['GET'])
-def contact(sent):
-	content = index()
-	content +=" contact form"
-	return content
+#@app.route('/contact')
+#@app.route('/contact.html')
+#def contact(sent):
+#	content = index()
+#	content +=" contact form"
+#	return content
 
 
-@app.route('/contact', methods=['POST'])
-@app.route('/contact.html', methods=['POST'])
-def contact_message(sent):
-	content = contact()
-	content +=" message " + sent
+@app.route('/contact')
+@app.route('/contact.html')
+def contact_message():
+	content = render_template('contact_confirmation.html')
 	return content
 
 with app.test_request_context():

@@ -5,7 +5,7 @@
 	{{ registration_form.hidden_tag() }}
 
 	{% for error in registration_form.errors.name %}
-		<span class="form_error" >{{ error }}</span>
+		<span class="form_error">{{ error }}</span>
 	{% endfor %}
 	{{ registration_form.name(placeholder="Your Name") }}
 
