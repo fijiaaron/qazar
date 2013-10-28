@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, request
 from cloudtestenvironment import app
+from models import db, Registration, Contact
 from forms import RegistrationForm, ContactForm
 
 @app.route('/')
@@ -23,9 +24,15 @@ def landing():
 def landing_submit():
 	registration_form = RegistrationForm()
 
-	if registration_form.validate_on_submit(): 
+	if registration_form.validate_on_submit():
 		#TODO: save registration
-
+		registration = Registration(
+			name = registration_form.name,
+			email = registration_form.email,
+			phone = registration_form.phone,
+			company = registration_form.company)
+		db.session.add(registration)
+		db.session.commit()
 		if registration_form.tell_me_more.data == True:
 			return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
 		if registration_form.sign_up.data == True:
@@ -34,6 +41,14 @@ def landing_submit():
 	contact_form = ContactForm()
 	if contact_form.validate_on_submit():
 		# TODO: save message
+		contact = app.models.Contact(
+			name = contact_form.name,
+			email = contact_form.email,
+			phone = contact_form.phone,
+			message = contact_form.message
+		)
+		db.session.add(contact)
+		db.session.commit()
 		return "message sent"
 
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
@@ -63,6 +78,12 @@ def payment_method(method):
 
 @app.route('/payment/confirmation', methods=['POST'])
 def payment_confirmation(status):
+	import sys
+	sys.path.insert(0, '/Users/billyLee/Documents/webdev/qazar/')
+	from flask import request
+	from qazar.provisioner import Provisioner
+	p = Provisioner()
+	p.provision(request.remote_addr)
 	content = payment()
 	content += " status: " + status
 
