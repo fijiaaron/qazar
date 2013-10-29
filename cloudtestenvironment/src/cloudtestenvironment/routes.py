@@ -27,10 +27,11 @@ def landing_submit():
 	if registration_form.validate_on_submit():
 		#TODO: save registration
 		registration = Registration(
-			name = registration_form.name,
-			email = registration_form.email,
-			phone = registration_form.phone,
-			company = registration_form.company)
+			name = registration_form.name.data,
+			email = registration_form.email.data,
+			phone = registration_form.phone.data,
+			company = registration_form.company.data
+		)
 		db.session.add(registration)
 		db.session.commit()
 		if registration_form.tell_me_more.data == True:
@@ -41,11 +42,11 @@ def landing_submit():
 	contact_form = ContactForm()
 	if contact_form.validate_on_submit():
 		# TODO: save message
-		contact = app.models.Contact(
-			name = contact_form.name,
-			email = contact_form.email,
-			phone = contact_form.phone,
-			message = contact_form.message
+		contact = Contact(
+			name = contact_form.name.data,
+			email = contact_form.email.data,
+			phone = contact_form.phone.data,
+			message = contact_form.message.data
 		)
 		db.session.add(contact)
 		db.session.commit()
