@@ -19,18 +19,17 @@
 		<script type="text/javascript" src="js/util.js"></script>
 		<script language="javascript">
 			function showModal() {
+				$('#tell_me_more').click(function(){
+					$('#registration-form').attr('action', 'details');
+				});
+
 				if (window.location.href.contains("#register"))
 				{
 					$('#registration-form-modal').reveal({'animation':'fade'});
+					$('#order-registration-modal').reveal({'animation':'fade'});
 				}
-
 				if (window.location.href.contains('#contact')){
 					$('#contact-form-modal').reveal({'animation':'fade'});
-				}
-
-				if(window.location.href.contains('order-registration-modal'))
-				{
-					$('#order-registration-modal').reveal({'animation':'fade'});
 				}
 			}
 		</script>

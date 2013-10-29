@@ -41,14 +41,14 @@ def landing_submit():
 	return content
 
 @app.route('/order')
-@app.route('/order.html')
+@app.route('/order')
 def order():
 	content = render_template('order.html')
 	return content
 
 
 @app.route('/payment')
-@app.route('/payment.html')
+@app.route('/payment')
 def payment():
 	content = index()
 	content += " payment page"
@@ -76,7 +76,7 @@ def details():
 	return content
 
 @app.route('/details')
-@app.route('/details.html', methods=['POST'])
+@app.route('/details', methods=['POST'])
 def details_submit():
 
 	registration_form = RegistrationForm()
