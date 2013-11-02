@@ -1,0 +1,57 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# OSX 
+.DS_Store
+
+# Subversion
+.svn
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.db
+
+# Python
+*.pyc
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+__pycache__
+
+# Directories 
+/build/
+/bin/
+target/
+bin/**
+tmp/**
+tmp/**/*
+
+# Temp File
+*.tmp
+*.bak
+*.swp
+*~
+
+
+# Eclipse
+*.pydevproject
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+.cproject
+.buildpath
+RemoteSystemsTempFiles
+local.properties
+
+
+*.log
