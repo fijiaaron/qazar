@@ -1,0 +1,29 @@
+<form style="width: 412px">
+	{{form.hidden_tag()}}
+		<input placeholder="" style="width: 298px" /> 
+		<input placeholder="cvv" style="width: 85px" />
+		<br>
+		<div style="float:right">
+			<span style="font-size:1.5em"> Expiration</span>
+			
+			
+			{{form.expmonth(placeholder=form.expmonth.label)}}
+			{{form.expyear(placeholder=form.expyear.label)}}
+		</div>
+
+		
+		<input placeholder="Card Holder Name" style="width: 400px" /> 
+		<br>
+
+		<input placeholder="Billing Address" style="width: 400px" /> 
+		<br>
+		<input placeholder="City" style="width: 400px" /> 
+		<br>
+		<input placeholder="State" style="width: 400px" /> 
+		<br>
+		<input placeholder="Zip Code" style="width: 400px" /> 
+
+			<div style="float: right;">
+			<a href="/payment_confirmation"><input type="button" value="Finish"/></a>
+		</div>
+</form>
