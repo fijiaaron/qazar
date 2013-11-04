@@ -28,8 +28,8 @@ class Provisioner():
 		provision_request_id = provision_requests.insert(provision_request)
 		logging.info(self.db.collection_names())
 
-
 		logging.info("running provisioning script...")
-
+		call(["juju", "deploy", "jenkins"])
+		call(["juju", "expose", "jenkins"])
 
 
