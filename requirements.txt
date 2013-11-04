@@ -9,3 +9,4 @@ WTForms==1.0.5
 Werkzeug==0.9.4
 alembic==0.6.0
 itsdangerous==0.23
+pymongo==2.6.3

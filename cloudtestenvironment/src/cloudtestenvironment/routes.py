@@ -65,8 +65,9 @@ def order():
 @app.route('/payment')
 @app.route('/payment.html')
 def payment():
-	content = index()
-	content += " payment page"
+	#content = index()
+	#content += " payment page"
+	content = render_template('payment.html')
 	return content
 
 
@@ -77,16 +78,18 @@ def payment_method(method):
 	return content
 
 
-@app.route('/payment/confirmation', methods=['POST'])
-def payment_confirmation(status):
+@app.route('/payment/confirmation', methods=['GET','POST'])
+def payment_confirmation():
 	import sys
 	sys.path.insert(0, '/Users/billyLee/Documents/webdev/qazar/')
 	from flask import request
 	from qazar.provisioner import Provisioner
 	p = Provisioner()
 	p.provision(request.remote_addr)
-	content = payment()
-	content += " status: " + status
+	content = render_template('payment_confirmation.html')
+	return content
+	#content = payment()
+	#content += " status: " + status
 
 @app.route('/details')
 @app.route('/details.html')
