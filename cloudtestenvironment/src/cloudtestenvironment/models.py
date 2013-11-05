@@ -35,3 +35,31 @@ class Contact(db.Model):
 
 	def __repr__(self):
 		return '<Contact id:%s>' % self.id
+
+class Customer(db.Model):
+	__tablename__ = 'users'
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(40))
+	address1 = db.Column(db.String(40))
+	address2 = db.Column(db.String(40))
+	country = db.Column(db.String(40))
+	city = db.Column(db.String(40))
+	state = db.Column(db.String(40))
+	zipcode = db.Column(db.String(10))
+	phone = db.Column(db.String(15))
+	email = db.Column(db.String(40))
+	registered = db.Column(db.Boolean, nullable=False)
+
+	def __init__(self, name, address1, address2, country, city, state, zipcode, phone=None, email=None, registered=None):
+		self.name=name
+		self.address1=address1
+		self.address2=address2
+		self.country=country
+		self.city=city
+		self.state=state
+		self.zipcode=zipcode
+		self.phone=phone
+		self.email=email
+		self.registered=registered
+	def __repr__(self):
+		return '<User id:%s>' % self.id
