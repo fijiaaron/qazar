@@ -11,9 +11,8 @@ class RegistrationForm(Form):
 	company = TextField('Company')
 	tell_me_more = SubmitField()
 	sign_up = SubmitField()
-
-
-
+	pagename = HiddenField()
+	
 class ContactForm(Form):
 	phone_regex = '[\d\.\-\+\() ]+'
 	name = TextField('Name', validators = [Required("Please enter your name")])
@@ -21,3 +20,17 @@ class ContactForm(Form):
 	phone = TextField('Phone', validators = [Optional(), validators.Regexp(phone_regex, message="Your phone number is not valid")])
 	message = TextAreaField('Message')
 	send = SubmitField()
+
+class PurchaseForm(Form):
+	phone_regex = '[\d\.\-\+\() ]+'
+	name = TextField('Name', validators = [Required("Please enter your name")])
+	email = TextField('Email', validators = [Optional(), validators.email("Your email is not valid")])
+	phone = TextField('Phone', validators = [Optional(), validators.Regexp(phone_regex, message="Your phone number is not valid")])
+	address1 = TextField('Address 1', validators = [Required("Please enter your address")])
+	address2 = TextField('Address 2', validators=[Optional()])
+	city = TextField('City', validators = [Required("Please enter your city")])
+	state = SelectField('State', validators = [Required("Please choose your state")])
+	zipcode = TextField('Zip Code', validators = [Required("Please enter your zip code")])
+	country = SelectField('Country', validators = [Required("Please choose your country")])
+	submit = SubmitField()
+

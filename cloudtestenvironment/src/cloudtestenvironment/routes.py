@@ -1,6 +1,7 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, session
 from cloudtestenvironment import app
-from forms import RegistrationForm, ContactForm
+from forms import RegistrationForm, ContactForm, PurchaseForm
+from cloudtestenvironment.models import Customer
 
 @app.route('/')
 @app.route('/index')
@@ -28,7 +29,7 @@ def landing_submit():
 			return redirect(url_for('details')) #TODO: we can't remove the anchor
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
-			return redirect(url_for('order'))
+			return redirect('register')
 
 	contact_form = ContactForm()
 
@@ -40,10 +41,20 @@ def landing_submit():
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
 	return content
 
-@app.route('/order')
-@app.route('/order')
+@app.route('/order', methods=['GET'])
 def order():
-	content = render_template('order.html')
+	purchase_form = PurchaseForm()
+
+	content = render_template('order.html', purchase_form=purchase_form)
+	return content
+
+@app.route('/order', methods=['POST'])
+def order_submit():
+	purchase_form = PurchaseForm()
+		#TODO: save cc form
+	if purchase_form.submit.data == True:
+			return redirect('https://www.paypal.com/cgi-bin/webscr')
+	content = render_template('order.html', purchase_form=purchase_form)
 	return content
 
 
@@ -109,6 +120,25 @@ def whitepaper_download(register):
 #	content = index()
 #	content +=" contact form"
 #	return content
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	registration_form = RegistrationForm()
+	customer = Customer()
+	db_session.add(customer)
+	db_session.commit()
+	if not registration_form.validate_on_submit():
+		return redirect()
+	if request.registration_form['submit'] == "Tell Me More":
+		customer.registered == False
+		db_session.add(customer)
+		db_session.commit()
+		return redirect(url_for('details'))
+	if request.registration_form['submit'] == "Sign Up":
+		customer.registered == True
+		db_session.add(customer)
+		db_session.commit()
+		return redirect(url_for('order'))
+
 
 
 @app.route('/contact')

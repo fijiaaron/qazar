@@ -13,7 +13,11 @@
 			<input type="checkbox" name="" value="">Bugzilla<br>
 		</li>
 </div>
-
-include the order form here
-
+<div style="text-align: center">
+        <a href="#" data-reveal-id="purchase-form-modal" data-animation="fade" class="button">Buy Now</a>
+	</div>
+	<div id="purchase-form-modal" class="reveal-modal">
+		{% include 'purchase_form.html' %}
+		<a class="close-reveal-modal">&#215;</a>
+</div>
 {% endblock %}
