@@ -3,7 +3,7 @@ from cloudtestenvironment import app
 
 db = SQLAlchemy(app)
 
-class Registration(db.Model):
+class Customer(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(40))
 	email = db.Column(db.String(40))
@@ -17,7 +17,7 @@ class Registration(db.Model):
 		self.company=company
 
 	def __repr__(self):
-		return '<Registration id:%s>' % self.id
+		return '<Customer id:%s>' % self.id
 
 
 class Contact(db.Model):

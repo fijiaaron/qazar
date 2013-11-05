@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% block content %}
 
 <div style="max-width: 750px; padding-bottom: 4em">
@@ -59,8 +59,16 @@ Public or private cloud.  Or a combination of public and private infrastructure.
 </p>
 
 <div style="float:right">
-	<a href="register"><input type="button" value="Sign Up"/></a>
+	<a href="#register" data-reveal-id="registration-form-modal" data-animation="fade" class="button">Get Started</a>
+</div>
+
+<div id="registration-form-modal" class="reveal-modal">
+
+	{% include 'registration_form.html' %}
+	
+	<a class="close-reveal-modal">&#215;</a>
 </div>
 
 </div>
+
 {% endblock %}
