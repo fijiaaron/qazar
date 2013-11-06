@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for, request
 from cloudtestenvironment import app
 from models import db, Registration, Contact
 from forms import RegistrationForm, ContactForm
+from requests import post
 
 @app.route('/')
 @app.route('/index')
@@ -73,19 +74,16 @@ def payment():
 
 @app.route('/payment/<method>', defaults={'method': 'paypal'})
 def payment_method(method):
-	content = payment()
-	content += " method: " + method
+	#content = payment()
+	#content += " method: " + method
+	content = render_template('creditcard.html')
 	return content
 
 
 @app.route('/payment/confirmation', methods=['GET','POST'])
 def payment_confirmation():
-	import sys
-	sys.path.insert(0, '/Users/billyLee/Documents/webdev/qazar/')
-	from flask import request
-	from qazar.provisioner import Provisioner
-	p = Provisioner()
-	p.provision(request.remote_addr)
+	order = {}
+	response = post("http://127.0.0.1:5050/provision", order)
 	content = render_template('payment_confirmation.html')
 	return content
 	#content = payment()
