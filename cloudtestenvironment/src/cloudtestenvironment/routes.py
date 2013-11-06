@@ -1,6 +1,6 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, session
 from cloudtestenvironment import app
-from models import db, Registration, Contact
+from models import db, Customer, Contact
 from forms import RegistrationForm, ContactForm
 from requests import post
 
@@ -27,18 +27,26 @@ def landing_submit():
 
 	if registration_form.validate_on_submit():
 		#TODO: save registration
-		registration = Registration(
+		customer = Customer(
 			name = registration_form.name.data,
 			email = registration_form.email.data,
 			phone = registration_form.phone.data,
 			company = registration_form.company.data
 		)
-		db.session.add(registration)
-		db.session.commit()
 		if registration_form.tell_me_more.data == True:
+			customer.registered = 0
+			db.session.add(customer)
+			db.session.commit()
 			return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
 		if registration_form.sign_up.data == True:
+			db.session.add(customer)
+			db.session.commit()
 			return redirect(url_for('order', _anchor='registered'))
+	else:
+		session['name'] = registration_form.name.data
+		session['email'] = registration_form.email.data
+		session['phone'] = registration_form.phone.data
+		session['company'] = registration_form.company.data
 
 	contact_form = ContactForm()
 	if contact_form.validate_on_submit():
