@@ -13,7 +13,7 @@ class Provisioner():
 		client = pymongo.MongoClient()
 		self.db = client['qazar']
 
-	def provision(self, ip_address, env=None):
+	def provision(self, env=None):
 		"""
 		"""
 		logging.info("determing provisioning script...")
@@ -21,15 +21,21 @@ class Provisioner():
 		logging.info("creating database entry with requested status...")
 		provision_requests = self.db['provision_requests']
 		provision_request = {
-							"user_id": 0,
-							"ip_address": ip_address,
-							"status": "requested"
-							}
+			'environment': env,
+			'status_information': {
+				'status': 'requested',
+				'requested_at': ""
+				'requested_from': ip_address,
+				'requested_by': "",
+				'last_changed': ""
+			}
+		}
 		provision_request_id = provision_requests.insert(provision_request)
 		logging.info(self.db.collection_names())
 
 		logging.info("running provisioning script...")
-		call(["juju", "deploy", "jenkins"])
-		call(["juju", "expose", "jenkins"])
+		for charm in env['description']:
+			call(["juju", "deploy", charm])
+			call(["juju", "expose", charm])
 
 

@@ -3,6 +3,7 @@ from cloudtestenvironment import app
 from models import db, Customer, Contact
 from forms import RegistrationForm, ContactForm
 from requests import post
+from time import strftime
 
 @app.route('/')
 @app.route('/index')
@@ -90,8 +91,13 @@ def payment_method(method):
 
 @app.route('/payment/confirmation', methods=['GET','POST'])
 def payment_confirmation():
-	order = {}
-	response = post("http://127.0.0.1:5050/provision", order)
+	for_provisioner = {
+		'description': 'jenkins'
+		'requested_at': strftime("%c")
+		'requested_from': request.remote_addr
+		'requested_by': ''
+	}
+	response = post("http://127.0.0.1:5050/provision", params=for_provisioner)
 	content = render_template('payment_confirmation.html')
 	return content
 	#content = payment()
