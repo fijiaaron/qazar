@@ -92,10 +92,10 @@ def payment_method(method):
 @app.route('/payment/confirmation', methods=['GET','POST'])
 def payment_confirmation():
 	for_provisioner = {
-		'description': 'jenkins'
-		'requested_at': strftime("%c")
-		'requested_from': request.remote_addr
-		'requested_by': ''
+		'description': 'jenkins',
+		'time': strftime("%c"),
+		'ip_address': request.remote_addr,
+		'customer': 'Johnny Test'
 	}
 	response = post("http://127.0.0.1:5050/provision", params=for_provisioner)
 	content = render_template('payment_confirmation.html')
