@@ -1,0 +1,65 @@
+Testing in the cloud
+
+	What is the cloud?
+		Advantages of using the cloud
+			on demand
+			dynamic scaling
+				vertical
+				horizontal
+			outsource infrastructure
+				data center
+				hardware
+				network
+				software (os, platform, application)
+			cost
+		Architectural considerations
+			separation of concern
+				compute
+				storage
+				database, message queue, etc
+			standardization of platform
+			service oriented
+			scaling
+			deployment
+			monitoring
+		Security considerations
+			physical access 
+			operating system
+				up to date patches
+				standarization
+			bigger target
+				more resources
+			data
+				safety
+				lockin
+		Managed or self-service
+
+	Cloud service levels
+		Infrastructure (Iaas)
+			Providers
+				AWS
+				Rackspace Cloud
+				HP Cloud
+				Microsoft Azure
+				Linode
+			Open Source
+				OpenStack
+				Eucalyptus
+			Provider abstraction 
+				CloudFoundry
+		Platform (PaaS)
+			Java, JEE
+			Ruby on Rails
+			Python
+			PHP, LAMP
+			Node.js
+			.NET
+
+		Platform Providers
+			Heroku
+			Engine Yard
+			Azure
+			Joyent
+			Nodejitsu
+
+		Application (SaaS)
