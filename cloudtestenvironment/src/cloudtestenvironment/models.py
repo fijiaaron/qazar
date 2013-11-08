@@ -21,7 +21,6 @@ class Customer(db.Model):
 	name = db.Column(db.String(40))
 	email = db.Column(db.String(40))
 	phone = db.Column(db.String(15))
-<<<<<<< HEAD
 	company = db.Column(db.String(40))
 	registered = db.Column(db.Integer)
 
@@ -32,15 +31,3 @@ class Customer(db.Model):
 		self.company = company
 		self.registered = registered
 
-=======
-	message = db.Column(db.String(500))
-
-	def __init__(self, name, email, phone=None, company=None):
-		self.name=name
-		self.email=email
-		self.phone=phone
-		self.company=company
-
-	def __repr__(self):
-		return '<Contact id:%s>' % self.id
->>>>>>> upstream/master

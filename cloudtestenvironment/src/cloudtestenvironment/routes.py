@@ -24,7 +24,6 @@ def landing():
 
 @app.route('/landing', methods=['POST'])
 def landing_submit():
-<<<<<<< HEAD
 	registration_form = RegistrationForm()
 
 	if registration_form.validate_on_submit():
@@ -62,23 +61,9 @@ def landing_submit():
 		db.session.add(contact)
 		db.session.commit()
 		return "message sent"
-=======
-	registration_form = RegistrationForm() 
-		#TODO: save registration
-
-	if registration_form.tell_me_more.data == True:
-			return redirect(url_for('details')) #TODO: we can't remove the anchor
-	if registration_form.sign_up.data == True:
-		if registration_form.validate_on_submit():
-			return redirect(url_for('order'))
-
-	contact_form = ContactForm()
-
-
 	if contact_form.send.data == True:
 		if contact_form.validate_on_submit():
 			return redirect('contact')
->>>>>>> upstream/master
 
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
 	return content
