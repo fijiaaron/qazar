@@ -11,6 +11,7 @@ class Customer(db.Model):
 	company = db.Column(db.String(40))
 	registered = db.Column(db.Integer)
 	addresses = relationship("Address")
+	users = relationship("User")
 
 	def __init__(self, name, email, phone, company, registered=0):
 		self.name = name
@@ -21,13 +22,13 @@ class Customer(db.Model):
 
 class Address(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	address1 = db.Column()
-	address2 = db.Column()
-	city = db.Column()
-	state = db.Column()
-	country = db.Column()
-	zip_code = db.Column()
-	address_type = db.Column()
+	address1 = db.Column(db.String(40))
+	address2 = db.Column(db.String(40))
+	city = db.Column(db.String(40))
+	state = db.Column(db.String(40))
+	country = db.Column(db.String(40))
+	zip_code = db.Column(db.String(10))
+	address_type = db.Column(db.String(40))
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __init__(self, address1, address2, city, state, country, 
@@ -41,3 +42,8 @@ class Address(db.Model):
 		self.address_type = address_type
 		self.customer_id = customer_id
 
+class User(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(40))
+	password = db.Column(db.String(40))
+	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
