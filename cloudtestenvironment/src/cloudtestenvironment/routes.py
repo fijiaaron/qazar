@@ -123,21 +123,30 @@ def whitepaper_download(register):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	registration_form = RegistrationForm()
-	customer = Customer()
-	db_session.add(customer)
-	db_session.commit()
+
+	customer = Customer(
+			name = registration_form.name.data,
+			email = registration_form.email.data,
+			phone = registration_form.phone.data,
+			company = registration_form.company.data
+		)	
 	if not registration_form.validate_on_submit():
-		return redirect()
-	if request.registration_form['submit'] == "Tell Me More":
 		customer.registered == False
-		db_session.add(customer)
-		db_session.commit()
-		return redirect(url_for('details'))
-	if request.registration_form['submit'] == "Sign Up":
+		db.session.add(customer)
+		db.session.commit()
+		return redirect(url_for('landing')) #TODO: Redirect to referrer page
+		
+	if registration_form.tell_me_more.data == True:
+		customer.registered == False
+		db.session.add(customer)
+		db.session.commit()
+		return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
+
+	if registration_form.sign_up.data == True:
 		customer.registered == True
-		db_session.add(customer)
-		db_session.commit()
-		return redirect(url_for('order'))
+		db.session.add(customer)
+		db.session.commit()
+		return redirect(url_for('order', _anchor='registered'))
 
 
 
