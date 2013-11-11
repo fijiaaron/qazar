@@ -5,3 +5,5 @@ app.config.from_object('config')
 
 from cloudtestenvironment import routes
 from cloudtestenvironment import models
+
+models.db.create_all()
