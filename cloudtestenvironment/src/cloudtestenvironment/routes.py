@@ -130,7 +130,7 @@ def whitepaper_download(register):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	registration_form = RegistrationForm()
-
+	ref = request.referrer
 	customer = Customer(
 			name = registration_form.name.data,
 			email = registration_form.email.data,
@@ -141,7 +141,7 @@ def register():
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
-		return redirect(url_for('landing')) #TODO: Redirect to referrer page
+		return redirect(ref)
 		
 	if registration_form.tell_me_more.data == True:
 		customer.registered == False
@@ -159,7 +159,7 @@ def register():
 @app.route('/contact.html')
 def contact_message():
 	contact_form = ContactForm()
-
+	ref = request.referrer
 	customer = Customer(
 			name = contact_form.name.data,
 			email = contact_form.email.data,
@@ -170,7 +170,7 @@ def contact_message():
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
-		return redirect(url_for('landing'))
+		return redirect(ref)
 	else:
 		db.session.add(customer)
 		db.session.commit()
