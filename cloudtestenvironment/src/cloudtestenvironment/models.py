@@ -10,8 +10,11 @@ class Customer(db.Model):
 	phone = db.Column(db.String(15))
 	company = db.Column(db.String(40))
 	registered = db.Column(db.Integer)
-	addresses = relationship("Address")
-	users = relationship("User")
+	addresses = relationship('Address')
+	users = relationship('User')
+	accounts = relationship('Account')
+	messages = relationship('Message')
+	orders = relationship('Order')
 
 	def __init__(self, name, email, phone, company, registered=0):
 		self.name = name
@@ -45,5 +48,57 @@ class Address(db.Model):
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(40))
-	password = db.Column(db.String(40))
+	password_hash = db.Column(db.String(40))
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+
+	def __init__(self, username, password_hash, customer_id):
+		self.username = username
+		self.password_hash = password_hash
+		self.customer_id = customer_id
+
+class Account(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	balance = db.Column(db.Decimal(2))
+	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+
+	def __init__(self, balance, customer_id):
+		self.balance = balance
+		self.customer_id = customer_id
+
+class Message(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	message = db.Column(db.String())
+	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+
+	def __init__(self, message, customer_id):
+		self.message = message
+		self.customer_id = customer_id
+
+class Order(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+	environment_id = db.Column(db.Integer, db.ForeignKey('environment.id'))
+	payment = relationship('Payment')
+
+	def __init__(self, customer_id, environment_id):
+		self.customer_id = customer_id
+		self.environment_id = environment_id
+
+class Environment(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	description = db.Column(db.String())
+	order = relationship('Order')
+
+	def __init__(self, description):
+		self.description = description
+
+class Payment(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	amount = db.Column(db.Decimal(2))
+	order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
+
+	def __init__(self, amount, order_id):
+		self.amount = amount
+		self.order_id = order_id
+
+

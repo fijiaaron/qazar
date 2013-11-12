@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request, session
-from cloudtestenvironment import app
-from models import db, Customer, Contact
+from cloudtestenvironment import app, bcrypt
+from models import db, Customer
 from forms import RegistrationForm, ContactForm
 from requests import post
 from time import strftime
@@ -35,11 +35,11 @@ def landing_submit():
 			company = registration_form.company.data
 		)
 		if registration_form.tell_me_more.data == True:
-			customer.registered = 0
 			db.session.add(customer)
 			db.session.commit()
 			return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
 		if registration_form.sign_up.data == True:
+			customer.registered = 1
 			db.session.add(customer)
 			db.session.commit()
 			return redirect(url_for('order', _anchor='registered'))
@@ -52,14 +52,6 @@ def landing_submit():
 	contact_form = ContactForm()
 	if contact_form.validate_on_submit():
 		# TODO: save message
-		contact = Contact(
-			name = contact_form.name.data,
-			email = contact_form.email.data,
-			phone = contact_form.phone.data,
-			message = contact_form.message.data
-		)
-		db.session.add(contact)
-		db.session.commit()
 		return "message sent"
 	if contact_form.send.data == True:
 		if contact_form.validate_on_submit():
