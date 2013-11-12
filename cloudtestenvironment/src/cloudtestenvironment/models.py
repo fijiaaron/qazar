@@ -50,7 +50,7 @@ class Address(db.Model):
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(40))
-	password_hash = db.Column(db.String(40))
+	password_hash = db.Column(db.String(255))
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __init__(self, username, password_hash, customer_id):
@@ -69,7 +69,7 @@ class Account(db.Model):
 
 class Message(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	message = db.Column(db.String())
+	message = db.Column(db.String(255))
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __init__(self, message, customer_id):
@@ -88,7 +88,7 @@ class Order(db.Model):
 
 class Environment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	description = db.Column(db.String())
+	description = db.Column(db.String(255))
 	order = relationship('Order')
 
 	def __init__(self, description):
