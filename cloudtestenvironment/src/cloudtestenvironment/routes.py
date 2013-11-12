@@ -175,8 +175,8 @@ def contact_message():
 		db.session.add(customer)
 		db.session.commit()
 		return "message sent"
-		content = render_template('contact_confirmation.html')
-		return content
+	content = render_template('contact_confirmation.html')
+	return content
 
 with app.test_request_context():
 	print "starting application"
