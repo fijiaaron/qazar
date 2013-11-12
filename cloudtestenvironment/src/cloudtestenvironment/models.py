@@ -10,11 +10,13 @@ class Customer(db.Model):
 	phone = db.Column(db.String(15))
 	company = db.Column(db.String(40))
 	registered = db.Column(db.Integer)
-	addresses = relationship('Address')
-	users = relationship('User')
-	accounts = relationship('Account')
-	messages = relationship('Message')
-	orders = relationship('Order')
+	
+	# relational patterns
+	address = relationship('Address')
+	user = relationship('User')
+	account = relationship('Account')
+	message = relationship('Message')
+	order = relationship('Order')
 
 	def __init__(self, name, email, phone, company, registered=0):
 		self.name = name
