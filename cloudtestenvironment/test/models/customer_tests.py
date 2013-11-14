@@ -1,5 +1,5 @@
 import unittest
-from cloudtestenvironment.models.customer import Customer
+from cloudtestenvironment.models import Customer
 
 class CustomerTests(unittest.TestCase):
 	def testCustomerCreation(self):

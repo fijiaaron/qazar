@@ -1,9 +1,23 @@
-from cloudtestenvironment.models.customer import Customer
+from cloudtestenvironment.models import Customer
+from cloudtestenvironment import db
 
-cust = Customer("Aaron", "aarone@one-shore.com")
+def setup():
+	print
+	print "recreating database tables"
+	print(db)
+	db.drop_all()
+	db.create_all()
 
-assert cust.name == "Aaron"
-assert cust.email == "aarone@one-shore.com"
+def test_create_customer():
+	customer = Customer("John Doe", "johnd@example.com")
+	assert customer.name == "John Doe"
+	assert customer.email == "johnd@example.com"
 
-print " " 
-print "cust: " + cust.email
+def test_save_customer():
+	customer = Customer("John Doe", "johnd@example.com")
+	db.session.add(customer)
+	db.session.commit()
+
+	retrieved = Customer.query.first();
+	assert customer.name == retrieved.name
+	assert customer.email == retrieved.email
