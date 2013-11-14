@@ -24,14 +24,15 @@
 	{% endfor %}
 	{{ registration_form.company(placeholder="Company Name") }}
 
+	{% if not "details" in request.path %}
 	<div style="float: left">
 		{{ registration_form.tell_me_more(value="Tell Me More") }}
 	</div>
+	{% endif %}
 
 	<div style="float: right">
 		{{ registration_form.sign_up(value="Sign Up") }}
 	</div>
-
 	<div style="clear: both"/>
 
 </form>

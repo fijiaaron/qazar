@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request
-from cloudtestenvironment import app
+from cloudtestenvironment import app, models
 from forms import RegistrationForm, ContactForm
 
 @app.route('/')
@@ -22,16 +22,20 @@ def landing():
 @app.route('/landing', methods=['POST'])
 def landing_submit():
 	registration_form = RegistrationForm() 
-		#TODO: save registration
+	#TODO: save registration
+
+	customer = models.Customer("Aaron Evans", "aarone@one-shore.com", "425-242-4304", "One Shore Inc")
+	
+
 
 	if registration_form.tell_me_more.data == True:
 			return redirect(url_for('details')) #TODO: we can't remove the anchor
 	if registration_form.sign_up.data == True:
+
 		if registration_form.validate_on_submit():
 			return redirect(url_for('order'))
 
 	contact_form = ContactForm()
-
 
 	if contact_form.send.data == True:
 		if contact_form.validate_on_submit():
@@ -70,7 +74,10 @@ def payment_confirmation(status):
 @app.route('/details')
 @app.route('/details.html')
 def details():
-	content = render_template("details.html")
+	registration_form=RegistrationForm()
+	contact_form=ContactForm()
+
+	content = render_template("details.html", registration_form=registration_form, contact_form=contact_form)
 	return content
 
 
@@ -101,6 +108,7 @@ def whitepaper_download(register):
 def contact_message():
 	content = render_template('contact_confirmation.html')
 	return content
+
 
 with app.test_request_context():
 	print "starting application"
