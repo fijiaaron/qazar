@@ -9,16 +9,16 @@ class Customer(db.Model):
 	email = db.Column(db.String(40))
 	phone = db.Column(db.String(15))
 	company = db.Column(db.String(40))
-	registered = db.Column(db.Integer)
-	
-	# relational patterns
-	address = relationship('Address')
-	user = relationship('User')
-	account = relationship('Account')
-	message = relationship('Message')
-	order = relationship('Order')
+	registered = db.Column(db.Boolean)
 
-	def __init__(self, name, email, phone, company, registered=0):
+	# relational patterns
+	address = db.relationship('Address')
+	user = db.relationship('User')
+	account = db.relationship('Account')
+	message = db.relationship('Message')
+	order = db.relationship('Order')
+
+	def __init__(self, name, email, phone, company, registered=False):
 		self.name = name
 		self.email = email
 		self.phone = phone
@@ -60,7 +60,7 @@ class User(db.Model):
 
 class Account(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	balance = db.Column(db.Decimal(2))
+	balance = db.Column(db.Numeric(2))
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __init__(self, balance, customer_id):
@@ -79,28 +79,51 @@ class Message(db.Model):
 class Order(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
-	environment_id = db.Column(db.Integer, db.ForeignKey('environment.id'))
-	payment = relationship('Payment')
+	total_amount = db.Column(db.Numeric(2))
+	discount = db.Column(db.Numeric(2))
+	order_created = db.Column(db.String(40))
+	order_fulfilled = db.Column(db.String(40))
+	order_items = db.relationship('OrderItems')
+	payment = db.relationship('Payment')
 
-	def __init__(self, customer_id, environment_id):
+	def __init__(self, customer_id, total_amount, discount, order_created, order_fulfilled):
 		self.customer_id = customer_id
-		self.environment_id = environment_id
+		self.total_amount = total_amount
+		self.discount = discount
+		self.order_created = order_created
+		self.order_fulfilled = order_fulfilled
+
+class OrderItems(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
+	description = db.Column(db.String(255))
+	price = db.Column(db.Numeric(2))
+	discount = db.Column(db.Numeric(2))
+	quantity = db.Column(db.Integer)
+
+	def __init__(self, order_id, description, price, discount, quantity):
+		self.order_id = order_id
+		self.description = description
+		self.price = price
+		self.discount = discount
+		self.quantity = quantity
 
 class Environment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	description = db.Column(db.String(255))
-	order = relationship('Order')
 
 	def __init__(self, description):
 		self.description = description
 
 class Payment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	amount = db.Column(db.Decimal(2))
 	order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
-
-	def __init__(self, amount, order_id):
-		self.amount = amount
+	amount = db.Column(db.Numeric(2))
+	payment_on = db.Column(db.String(40))
+	payment_method = db.Column(db.String(40))
+	def __init__(self, order_id, amount, payment_on, payment_method):
 		self.order_id = order_id
-
+		self.amount = amount
+		self.payment_on = payment_on
+		self.payment_method = payment_method
 
