@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request, session
 from forms import RegistrationForm, ContactForm, PurchaseForm, OrderForm
 from cloudtestenvironment import app
-from models import db, Customer
+from models import db, Customer, Order, OrderItems
 from requests import post
 from time import strftime
 
@@ -24,9 +24,9 @@ def landing():
 @app.route('/landing', methods=['POST'])
 def landing_submit():
 	registration_form = RegistrationForm()
-
 	if registration_form.tell_me_more.data == True:
-			return redirect(url_for('details')) #TODO: we can't remove the anchor
+		return redirect(url_for('details')) #TODO: we can't remove the anchor
+	
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
 			return redirect(url_for('register'), code=307)
@@ -35,7 +35,7 @@ def landing_submit():
 
 	if contact_form.send.data == True:
 		if contact_form.validate_on_submit():
-			return redirect('contact')
+			return redirect(url_for('contact'))
 
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
 	return content
@@ -52,15 +52,23 @@ def order_submit():
 	purchase_form = PurchaseForm()
 	order_form = OrderForm()
 	order = Order(
+		customer_id = 1,
 		total_amount = 1.99, 
 		discount = 0.99,
 		order_created = strftime("%c"),
 		order_fulfilled = strftime("%c")
 	)
-	order_items = OrderItems(
-		
-	)
 
+	order_items = OrderItems(
+		order_id = order.id,
+		description = "{'enviroment': {'nodes': [{'apps': ['jenkins', 'bugzilla', 'fitnesse', 'selenium'], 'memory': '1GB', 'os': 'ubuntu 12.04 LTS', 'name': 'tools', 'description': 'host build automation and test management tools'}, {'memory': '2GB', 'os': 'ubuntu 12.04 LTS', 'name': 'web', 'dependencies': [{'python': '2.7'}, {'mysql': '5.5'}], 'description': 'deploy python webapp for testing'}]}}",		
+        price = 99.99,
+		discount = 0.00,
+		quantity = 1
+	)
+	db.session.add(order)
+	db.session.add(order_items)
+	db.session.commit()
 		#TODO: save cc form
 	if purchase_form.submit.data == True:
 		return redirect('https://www.paypal.com/cgi-bin/webscr')
@@ -106,7 +114,7 @@ def details_submit():
 
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
-			return redirect(url_for('order'))
+			return redirect(url_for('register'), code=307)
 
 	content = render_template('details.html', registration_form=registration_form)
 	return content
@@ -133,7 +141,7 @@ def register():
 		email = registration_form.email.data,
 		phone = registration_form.phone.data,
 		company = registration_form.company.data
-	)	
+	)
 	if not registration_form.validate_on_submit():
 		customer.registered == False
 		db.session.add(customer)
