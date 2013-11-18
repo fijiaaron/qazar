@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request, session
-from forms import RegistrationForm, ContactForm, PurchaseForm
+from forms import RegistrationForm, ContactForm, PurchaseForm, OrderForm
 from cloudtestenvironment import app
-from models import db, Customer, Contact
+from models import db, Customer
 from requests import post
 from time import strftime
 
@@ -29,7 +29,7 @@ def landing_submit():
 			return redirect(url_for('details')) #TODO: we can't remove the anchor
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
-			return redirect('register')
+			return redirect(url_for('register'), code=307)
 
 	contact_form = ContactForm()
 
@@ -43,31 +43,38 @@ def landing_submit():
 @app.route('/order', methods=['GET'])
 def order():
 	purchase_form = PurchaseForm()
-
-	content = render_template('order.html', purchase_form=purchase_form)
+	order_form = OrderForm()
+	content = render_template('order.html', purchase_form=purchase_form, order_form=order_form)
 	return content
 
 @app.route('/order', methods=['POST'])
 def order_submit():
 	purchase_form = PurchaseForm()
+	order_form = OrderForm()
+	order = Order(
+		total_amount = 1.99, 
+		discount = 0.99,
+		order_created = strftime("%c"),
+		order_fulfilled = strftime("%c")
+	)
+	order_items = OrderItems(
+		
+	)
+
 		#TODO: save cc form
 	if purchase_form.submit.data == True:
-			return redirect('https://www.paypal.com/cgi-bin/webscr')
-	content = render_template('order.html', purchase_form=purchase_form)
+		return redirect('https://www.paypal.com/cgi-bin/webscr')
+	content = render_template('order.html', purchase_form=purchase_form, order_form=order_form)
 	return content
 
 @app.route('/payment')
-@app.route('/payment')
+@app.route('/payment.html')
 def payment():
-	#content = index()
-	#content += " payment page"
 	content = render_template('payment.html')
 	return content
 
 @app.route('/payment/<method>', defaults={'method': 'paypal'})
 def payment_method(method):
-	#content = payment()
-	#content += " method: " + method
 	content = render_template('creditcard.html')
 	return content
 
@@ -82,8 +89,6 @@ def payment_confirmation():
 	response = post("http://127.0.0.1:5050/provision", params=for_provisioner)
 	content = render_template('payment_confirmation.html')
 	return content
-	#content = payment()
-	#content += " status: " + status
 
 @app.route('/details')
 @app.route('/details', methods=['GET'])
@@ -120,28 +125,20 @@ def whitepaper_download(register):
 	content += " download " + register
 	return content
 
-#@app.route('/contact')
-#@app.route('/contact.html')
-#def contact(sent):
-#	content = index()
-#	content +=" contact form"
-#	return content
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	registration_form = RegistrationForm()
-	ref = request.referrer
 	customer = Customer(
-			name = registration_form.name.data,
-			email = registration_form.email.data,
-			phone = registration_form.phone.data,
-			company = registration_form.company.data
-		)	
+		name = registration_form.name.data,
+		email = registration_form.email.data,
+		phone = registration_form.phone.data,
+		company = registration_form.company.data
+	)	
 	if not registration_form.validate_on_submit():
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
-		return redirect(ref)
+		return redirect(request.referrer)
 		
 	if registration_form.tell_me_more.data == True:
 		customer.registered == False
@@ -159,18 +156,17 @@ def register():
 @app.route('/contact.html')
 def contact_message():
 	contact_form = ContactForm()
-	ref = request.referrer
 	customer = Customer(
-			name = contact_form.name.data,
-			email = contact_form.email.data,
-			phone = contact_form.phone.data,
-			company = contact_form.company.data
-		)
+		name = contact_form.name.data,
+		email = contact_form.email.data,
+		phone = contact_form.phone.data,
+		company = contact_form.company.data
+	)
 	if not contact_form.validate_on_submit():
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
-		return redirect(ref)
+		return redirect(request.referrer)
 	else:
 		db.session.add(customer)
 		db.session.commit()
