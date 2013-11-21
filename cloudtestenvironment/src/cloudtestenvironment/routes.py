@@ -1,5 +1,7 @@
 from flask import render_template, redirect, url_for, request, session
+from forms import RegistrationForm, ContactForm, PurchaseForm, OrderForm
 from cloudtestenvironment import app
+<<<<<<< HEAD
 <<<<<<< HEAD
 from forms import RegistrationForm, ContactForm, PurchaseForm
 from cloudtestenvironment.models import Customer
@@ -9,6 +11,11 @@ from forms import RegistrationForm, ContactForm
 from requests import post
 from time import strftime
 >>>>>>> 122b4757dcb3eda735f5971e7189c720bcfe71b0
+=======
+from models import db, Customer, Order, OrderItems
+from requests import post
+from time import strftime
+>>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 
 @app.route('/')
 @app.route('/index')
@@ -16,7 +23,6 @@ from time import strftime
 def index():
 	content = render_template('index.html')
 	return content
-
 
 @app.route('/landing')
 @app.route('/landing', methods=['GET'])
@@ -30,28 +36,26 @@ def landing():
 @app.route('/landing', methods=['POST'])
 def landing_submit():
 	registration_form = RegistrationForm()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 	if registration_form.tell_me_more.data == True:
-			return redirect(url_for('details')) #TODO: we can't remove the anchor
+		return redirect(url_for('details')) #TODO: we can't remove the anchor
+	
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
+<<<<<<< HEAD
 			return redirect('register')
+=======
+			return redirect(url_for('register'), code=307)
+>>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 
 	contact_form = ContactForm()
-	if contact_form.validate_on_submit():
-		# TODO: save message
-		contact = Contact(
-			name = contact_form.name.data,
-			email = contact_form.email.data,
-			phone = contact_form.phone.data,
-			message = contact_form.message.data
-		)
-		db.session.add(contact)
-		db.session.commit()
-		return "message sent"
+
 	if contact_form.send.data == True:
 		if contact_form.validate_on_submit():
-			return redirect('contact')
+			return redirect(url_for('contact'))
 
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
 	return content
@@ -59,36 +63,48 @@ def landing_submit():
 @app.route('/order', methods=['GET'])
 def order():
 	purchase_form = PurchaseForm()
-
-	content = render_template('order.html', purchase_form=purchase_form)
+	order_form = OrderForm()
+	content = render_template('order.html', purchase_form=purchase_form, order_form=order_form)
 	return content
 
 @app.route('/order', methods=['POST'])
 def order_submit():
 	purchase_form = PurchaseForm()
+	order_form = OrderForm()
+	order = Order(
+		customer_id = 1,
+		total_amount = 1.99, 
+		discount = 0.99,
+		order_created = strftime("%c"),
+		order_fulfilled = strftime("%c")
+	)
+
+	order_items = OrderItems(
+		order_id = order.id,
+		description = "{'enviroment': {'nodes': [{'apps': ['jenkins', 'bugzilla', 'fitnesse', 'selenium'], 'memory': '1GB', 'os': 'ubuntu 12.04 LTS', 'name': 'tools', 'description': 'host build automation and test management tools'}, {'memory': '2GB', 'os': 'ubuntu 12.04 LTS', 'name': 'web', 'dependencies': [{'python': '2.7'}, {'mysql': '5.5'}], 'description': 'deploy python webapp for testing'}]}}",		
+        price = 99.99,
+		discount = 0.00,
+		quantity = 1
+	)
+	db.session.add(order)
+	db.session.add(order_items)
+	db.session.commit()
 		#TODO: save cc form
 	if purchase_form.submit.data == True:
-			return redirect('https://www.paypal.com/cgi-bin/webscr')
-	content = render_template('order.html', purchase_form=purchase_form)
+		return redirect('https://www.paypal.com/cgi-bin/webscr')
+	content = render_template('order.html', purchase_form=purchase_form, order_form=order_form)
 	return content
 
-
 @app.route('/payment')
-@app.route('/payment')
+@app.route('/payment.html')
 def payment():
-	#content = index()
-	#content += " payment page"
 	content = render_template('payment.html')
 	return content
 
-
 @app.route('/payment/<method>', defaults={'method': 'paypal'})
 def payment_method(method):
-	#content = payment()
-	#content += " method: " + method
 	content = render_template('creditcard.html')
 	return content
-
 
 @app.route('/payment/confirmation', methods=['GET','POST'])
 def payment_confirmation():
@@ -101,8 +117,6 @@ def payment_confirmation():
 	response = post("http://127.0.0.1:5050/provision", params=for_provisioner)
 	content = render_template('payment_confirmation.html')
 	return content
-	#content = payment()
-	#content += " status: " + status
 
 @app.route('/details')
 @app.route('/details', methods=['GET'])
@@ -120,11 +134,10 @@ def details_submit():
 
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
-			return redirect(url_for('order'))
+			return redirect(url_for('register'), code=307)
 
 	content = render_template('details.html', registration_form=registration_form)
 	return content
-
 
 @app.route('/whitepaper')
 @app.route('/whitepaper.html')
@@ -140,15 +153,10 @@ def whitepaper_download(register):
 	content += " download " + register
 	return content
 
-#@app.route('/contact')
-#@app.route('/contact.html')
-#def contact(sent):
-#	content = index()
-#	content +=" contact form"
-#	return content
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	registration_form = RegistrationForm()
+<<<<<<< HEAD
 
 	customer = Customer(
 			name = registration_form.name.data,
@@ -157,17 +165,30 @@ def register():
 			company = registration_form.company.data
 		)	
 
+=======
+	customer = Customer(
+		name = registration_form.name.data,
+		email = registration_form.email.data,
+		phone = registration_form.phone.data,
+		company = registration_form.company.data
+	)
+>>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 	if not registration_form.validate_on_submit():
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
+<<<<<<< HEAD
 		return redirect(url_for('landing')) #TODO: Redirect to referrer page
+=======
+		return redirect(request.referrer)
+>>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 		
 	if registration_form.tell_me_more.data == True:
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
 		return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
+<<<<<<< HEAD
 
 	if registration_form.sign_up.data == True:
 		customer.registered == True
@@ -176,14 +197,36 @@ def register():
 		return redirect(url_for('order', _anchor='registered'))
 
 
+=======
+>>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 
+	if registration_form.sign_up.data == True:
+		customer.registered == True
+		db.session.add(customer)
+		db.session.commit()
+		return redirect(url_for('order', _anchor='registered'))
 
 @app.route('/contact')
 @app.route('/contact.html')
 def contact_message():
+	contact_form = ContactForm()
+	customer = Customer(
+		name = contact_form.name.data,
+		email = contact_form.email.data,
+		phone = contact_form.phone.data,
+		company = contact_form.company.data
+	)
+	if not contact_form.validate_on_submit():
+		customer.registered == False
+		db.session.add(customer)
+		db.session.commit()
+		return redirect(request.referrer)
+	else:
+		db.session.add(customer)
+		db.session.commit()
+		return "message sent"
 	content = render_template('contact_confirmation.html')
 	return content
 
 with app.test_request_context():
 	print "starting application"
-	

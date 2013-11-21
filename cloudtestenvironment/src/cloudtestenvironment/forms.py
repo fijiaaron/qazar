@@ -34,3 +34,9 @@ class PurchaseForm(Form):
 	country = SelectField('Country', validators = [Required("Please choose your country")])
 	submit = SubmitField()
 
+class OrderForm(Form):
+	jenkins = BooleanField('Jenkins', [validators.Optional()])
+	selenium = BooleanField('Selenium', [validators.Optional()])
+	fitnesse = BooleanField('FitNesse', [validators.Optional()])
+	bugzilla = BooleanField('Bugzilla', [validators.Optional()])
+	submit = SubmitField()
