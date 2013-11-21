@@ -168,3 +168,41 @@ li {
 .button:hover {
 	border-color: #ea0;
 }
+
+#tabs ul {
+	list-style:none;
+	position:relative; 
+	z-index:2;
+	display:table;
+	border-left:2px solid #333;
+}
+
+#tabs ul li {
+	float:left;
+}
+
+#tabs ul li a {
+	display:block;
+	padding:6px 15px;
+	text-decoration:none;
+	border-right:2px solid #333;
+	border-top:2px solid #333;
+	border-bottom: 2px solid #333;
+}
+
+#tabs {
+	width:412px;
+	margin: 0 auto;
+}
+
+#content {
+	width:100%;
+	margin:0 auto;
+	height:350px;
+	z-index:1;
+	text-align:center;
+	padding:10px 0;
+}
+.clear {
+	clear: both;
+}

@@ -7,8 +7,11 @@ from forms import RegistrationForm, ContactForm, PurchaseForm
 from cloudtestenvironment.models import Customer
 =======
 from models import db, Customer, Contact
+<<<<<<< Updated upstream
 from forms import RegistrationForm, ContactForm
 from requests import post
+=======
+>>>>>>> Stashed changes
 from time import strftime
 >>>>>>> 122b4757dcb3eda735f5971e7189c720bcfe71b0
 =======
@@ -98,7 +101,14 @@ def order_submit():
 @app.route('/payment')
 @app.route('/payment.html')
 def payment():
+<<<<<<< Updated upstream
 	content = render_template('payment.html')
+=======
+	#content = index()
+	#content += " payment page"
+	purchase_form = PurchaseForm()
+	content = render_template('payment.html', purchase_form=purchase_form)
+>>>>>>> Stashed changes
 	return content
 
 @app.route('/payment/<method>', defaults={'method': 'paypal'})
@@ -131,10 +141,14 @@ def details():
 def details_submit():
 
 	registration_form = RegistrationForm()
-
+		
 	if registration_form.sign_up.data == True:
 		if registration_form.validate_on_submit():
+<<<<<<< Updated upstream
 			return redirect(url_for('register'), code=307)
+=======
+			return redirect('register')
+>>>>>>> Stashed changes
 
 	content = render_template('details.html', registration_form=registration_form)
 	return content
@@ -154,6 +168,7 @@ def whitepaper_download(register):
 	return content
 
 @app.route('/register', methods=['GET', 'POST'])
+
 def register():
 	registration_form = RegistrationForm()
 <<<<<<< HEAD
@@ -163,6 +178,7 @@ def register():
 			email = registration_form.email.data,
 			phone = registration_form.phone.data,
 			company = registration_form.company.data
+<<<<<<< Updated upstream
 		)	
 
 =======
@@ -183,10 +199,14 @@ def register():
 		return redirect(request.referrer)
 >>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 		
+=======
+		)		
+>>>>>>> Stashed changes
 	if registration_form.tell_me_more.data == True:
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
+<<<<<<< Updated upstream
 		return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
 <<<<<<< HEAD
 
@@ -199,12 +219,22 @@ def register():
 
 =======
 >>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
+=======
+		return redirect(url_for('details')) #TODO: we can't remove the anchor
+>>>>>>> Stashed changes
 
-	if registration_form.sign_up.data == True:
+	if registration_form.sign_up.data == True and registration_form.validate_on_submit():
 		customer.registered == True
 		db.session.add(customer)
 		db.session.commit()
 		return redirect(url_for('order', _anchor='registered'))
+	else:
+		customer.registered == False
+		db.session.add(customer)
+		db.session.commit()
+		return redirect(ref or url_for('landing'))
+	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
+	return content
 
 @app.route('/contact')
 @app.route('/contact.html')
@@ -225,7 +255,7 @@ def contact_message():
 		db.session.add(customer)
 		db.session.commit()
 		return "message sent"
-	content = render_template('contact_confirmation.html')
+	content = render_template('contact_confirmation.html', contact_form=contact_form)
 	return content
 
 with app.test_request_context():
