@@ -1,3 +1,3 @@
 cls
 set PYTHONPATH=.
-nostests -v -s test
+py.test -v -s test
