@@ -1,32 +1,15 @@
-{% extends "layout.html" %}
-{% block content %}
-
-<h1>Enter Payment Info</h1>
-<div style="float: left;">
-	<a href="paypal" style="color: black; text-decoration: none"><h3>Paypal</h3></a>
-</div>
-<br><br>
-<hr>
-<div style="float: left;">
-	<a href="creditcard" style="color: black; text-decoration: none"><h3>Credit Card</h3></a>
-
-    {% include "creditcard_form.html" %}
-
+<h1>Select Payment Method</h1>
+<div id="tabs">
+	<ul>
+    <li><a id="tab1" class="selected" href="#tab-1">Paypal</a></li>
+    <li><a id="tab2" href="#tab-2">Credit Card</a></li>
+	</ul>
+	<div id="tab-1" class="selected">
+		{% include 'paypal_form.html' %}
+	</div>
+	<div id="tab-2">
+		{% include 'credit_card_form.html' %}
+	</div>
 </div>
 
-	<input type="hidden" name="cmd" value="_cart">
-	<input type="hidden" name="upload" value="1">
-	<input type="hidden" name="business" value="aarone@one-shore.com">
-	<input type="hidden" name="quantity" value="1">
-	<input type="hidden" name="lc" value="US">
-	<input type="hidden" name="item_name" value="Cloud Test Environment">
-	<input type="hidden" name="currency_code" value="USD">
-	<input type="hidden" name="amount" value="99.00">
-	<input type="hidden" name="tax" value="0.00">
-	<input type="hidden" name="button_subtype" value="services">
-	<input type="hidden" name="no_note" value="0">
-	<input type="hidden" name="shipping" value="0.00">
-	<input type="hidden" name="first name" value="">
-	<input type="hidden" name="email" value="{{form.email.data}}">
-	<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
-{% endblock %}
+

@@ -14,14 +14,14 @@
 				includeScript('/js/jquery-1.10.2.min.js');
 			}
 		</script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script type="text/javascript" src="/reveal/jquery.reveal.js"></script>		
 		<script type="text/javascript" src="js/util.js"></script>
 		<script language="javascript">
-			function showModal() {
+			$(function showModal() {
 				$('#tell_me_more').click(function(){
 					$('#registration-form').attr('action', 'details');
 				});
-
 				if (window.location.href.contains("#register"))
 				{
 					$('#registration-form-modal').reveal({'animation':'fade'});
@@ -30,7 +30,14 @@
 				if (window.location.href.contains('#contact')){
 					$('#contact-form-modal').reveal({'animation':'fade'});
 				}
-			}
+				if (window.location.href.contains('details')){
+					$('#tell_me_more').remove();
+				}
+			});
+			
+			$(function tabs() {
+				$("#tabs").tabs()
+			});
 		</script>
 	</head>
 	<body onload="showModal();">

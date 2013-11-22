@@ -3,6 +3,7 @@ from cloudtestenvironment import app
 
 db = SQLAlchemy(app)
 
+<<<<<<< Updated upstream
 class Registration(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(40))
@@ -63,3 +64,33 @@ class Customer(db.Model):
 		self.registered=registered
 	def __repr__(self):
 		return '<User id:%s>' % self.id
+=======
+class Contact(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(40))
+        email = db.Column(db.String(40))
+        phone = db.Column(db.String(15))
+        message = db.Column(db.String(500))
+
+        def __init__(self, name, email, phone, message):
+                self.name = name
+                self.email = email
+                self.phone = phone
+                self.message = message
+
+class Customer(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(40))
+        email = db.Column(db.String(40))
+        phone = db.Column(db.String(15))
+        company = db.Column(db.String(40))
+        registered = db.Column(db.Boolean)
+
+        def __init__(self, name, email, phone, company, registered=False):
+                self.name = name
+                self.email = email
+                self.phone = phone
+                self.company = company
+                self.registered = registered
+   	
+>>>>>>> Stashed changes
