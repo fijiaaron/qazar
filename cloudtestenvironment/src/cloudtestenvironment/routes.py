@@ -2,11 +2,15 @@ from flask import render_template, redirect, url_for, request, session
 from forms import RegistrationForm, ContactForm, PurchaseForm, OrderForm
 from cloudtestenvironment import app
 <<<<<<< HEAD
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 from forms import RegistrationForm, ContactForm, PurchaseForm
 from cloudtestenvironment.models import Customer
 =======
 from models import db, Customer, Contact
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 from forms import RegistrationForm, ContactForm
 from requests import post
@@ -19,6 +23,12 @@ from models import db, Customer, Order, OrderItems
 from requests import post
 from time import strftime
 >>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
+=======
+from forms import RegistrationForm, ContactForm
+from requests import post
+from time import strftime
+>>>>>>> 122b4757dcb3eda735f5971e7189c720bcfe71b0
+>>>>>>> Stashed changes
 
 @app.route('/')
 @app.route('/index')
@@ -39,10 +49,15 @@ def landing():
 @app.route('/landing', methods=['POST'])
 def landing_submit():
 	registration_form = RegistrationForm()
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 
 =======
 >>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
+=======
+
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 	if registration_form.tell_me_more.data == True:
 		return redirect(url_for('details')) #TODO: we can't remove the anchor
 	
@@ -51,11 +66,50 @@ def landing_submit():
 <<<<<<< HEAD
 			return redirect('register')
 =======
+<<<<<<< Updated upstream
 			return redirect(url_for('register'), code=307)
 >>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
 
 	contact_form = ContactForm()
 
+=======
+	if registration_form.validate_on_submit():
+		#TODO: save registration
+		customer = Customer(
+			name = registration_form.name.data,
+			email = registration_form.email.data,
+			phone = registration_form.phone.data,
+			company = registration_form.company.data
+		)
+		if registration_form.tell_me_more.data == True:
+			customer.registered = 0
+			db.session.add(customer)
+			db.session.commit()
+			return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
+		if registration_form.sign_up.data == True:
+			db.session.add(customer)
+			db.session.commit()
+			return redirect(url_for('order', _anchor='registered'))
+	else:
+		session['name'] = registration_form.name.data
+		session['email'] = registration_form.email.data
+		session['phone'] = registration_form.phone.data
+		session['company'] = registration_form.company.data
+>>>>>>> 122b4757dcb3eda735f5971e7189c720bcfe71b0
+
+	contact_form = ContactForm()
+	if contact_form.validate_on_submit():
+		# TODO: save message
+		contact = Contact(
+			name = contact_form.name.data,
+			email = contact_form.email.data,
+			phone = contact_form.phone.data,
+			message = contact_form.message.data
+		)
+		db.session.add(contact)
+		db.session.commit()
+		return "message sent"
+>>>>>>> Stashed changes
 	if contact_form.send.data == True:
 		if contact_form.validate_on_submit():
 			return redirect(url_for('contact'))
@@ -102,6 +156,7 @@ def order_submit():
 @app.route('/payment.html')
 def payment():
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	content = render_template('payment.html')
 =======
 	#content = index()
@@ -109,13 +164,27 @@ def payment():
 	purchase_form = PurchaseForm()
 	content = render_template('payment.html', purchase_form=purchase_form)
 >>>>>>> Stashed changes
+=======
+	#content = index()
+	#content += " payment page"
+	content = render_template('payment.html')
+>>>>>>> Stashed changes
 	return content
 
 @app.route('/payment/<method>', defaults={'method': 'paypal'})
 def payment_method(method):
+<<<<<<< Updated upstream
 	content = render_template('creditcard.html')
 	return content
 
+=======
+	#content = payment()
+	#content += " method: " + method
+	content = render_template('creditcard.html')
+	return content
+
+
+>>>>>>> Stashed changes
 @app.route('/payment/confirmation', methods=['GET','POST'])
 def payment_confirmation():
 	for_provisioner = {
@@ -127,6 +196,11 @@ def payment_confirmation():
 	response = post("http://127.0.0.1:5050/provision", params=for_provisioner)
 	content = render_template('payment_confirmation.html')
 	return content
+<<<<<<< Updated upstream
+=======
+	#content = payment()
+	#content += " status: " + status
+>>>>>>> Stashed changes
 
 @app.route('/details')
 @app.route('/details', methods=['GET'])
@@ -260,3 +334,7 @@ def contact_message():
 
 with app.test_request_context():
 	print "starting application"
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes

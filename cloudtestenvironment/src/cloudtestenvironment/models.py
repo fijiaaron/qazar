@@ -4,11 +4,16 @@ from cloudtestenvironment import app
 db = SQLAlchemy(app)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 class Customer(db.Model):
+=======
+class Contact(db.Model):
+>>>>>>> Stashed changes
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(40))
 	email = db.Column(db.String(40))
 	phone = db.Column(db.String(15))
+<<<<<<< Updated upstream
 	company = db.Column(db.String(40))
 	registered = db.Column(db.Boolean)
 
@@ -20,6 +25,25 @@ class Customer(db.Model):
 	order = db.relationship('Order')
 
 	def __init__(self, name, email, phone, company, registered=False):
+=======
+	message = db.Column(db.String(500))
+
+	def __init__(self, name, email, phone, message):
+		self.name = name
+		self.email = email
+		self.phone = phone
+		self.message = message
+
+class Customer(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(40))
+	email = db.Column(db.String(40))
+	phone = db.Column(db.String(15))
+	company = db.Column(db.String(40))
+	registered = db.Column(db.Integer)
+
+	def __init__(self, name, email, phone, company, registered=1):
+>>>>>>> Stashed changes
 		self.name = name
 		self.email = email
 		self.phone = phone
@@ -27,7 +51,10 @@ class Customer(db.Model):
 		self.registered = registered
 
 <<<<<<< HEAD
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 	def __repr__(self):
 		return '<Contact id:%s>' % self.id
 
@@ -62,6 +89,7 @@ class Address(db.Model):
 		return '<User id:%s>' % self.id
 =======
 >>>>>>> 122b4757dcb3eda735f5971e7189c720bcfe71b0
+<<<<<<< Updated upstream
 =======
 	country = db.Column(db.String(40))
 	zip_code = db.Column(db.String(10))
@@ -189,4 +217,6 @@ class Customer(db.Model):
                 self.company = company
                 self.registered = registered
    	
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
