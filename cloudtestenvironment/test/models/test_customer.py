@@ -1,5 +1,5 @@
-from cloudtestenvironment.models import Customer
 from cloudtestenvironment import db
+from cloudtestenvironment.models import Customer
 
 def setup():
 	print

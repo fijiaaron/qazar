@@ -1,6 +1,8 @@
 from flask import render_template, redirect, url_for, request
-from cloudtestenvironment import app, models
+
+from . import app
 from forms import RegistrationForm, ContactForm
+from models import Customer
 
 @app.route('/')
 @app.route('/index')
@@ -24,7 +26,7 @@ def landing_submit():
 	registration_form = RegistrationForm() 
 	#TODO: save registration
 
-	customer = models.Customer("Aaron Evans", "aarone@one-shore.com", "425-242-4304", "One Shore Inc")
+	customer = Customer("Aaron Evans", "aarone@one-shore.com", "425-242-4304", "One Shore Inc")
 	
 
 

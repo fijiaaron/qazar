@@ -5,5 +5,5 @@ app.config.from_object('config')
 from flask.ext.sqlalchemy import SQLAlchemy
 db = SQLAlchemy(app)
 
-from cloudtestenvironment import models
-from cloudtestenvironment import routes
+import models
+import routes
