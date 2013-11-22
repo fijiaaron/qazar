@@ -94,6 +94,10 @@ class Customer(db.Model):
                 self.registered = registered
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+   	
+>>>>>>> Stashed changes
+=======
    	
 >>>>>>> Stashed changes
 =======
