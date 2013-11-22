@@ -92,5 +92,13 @@ class Customer(db.Model):
                 self.phone = phone
                 self.company = company
                 self.registered = registered
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+   	
+>>>>>>> Stashed changes
+=======
+   	
+>>>>>>> Stashed changes
+=======
    	
 >>>>>>> Stashed changes

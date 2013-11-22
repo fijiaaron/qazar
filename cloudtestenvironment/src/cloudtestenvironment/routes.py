@@ -74,6 +74,12 @@ def payment():
 	#content += " payment page"
 	purchase_form = PurchaseForm()
 	content = render_template('payment.html', purchase_form=purchase_form)
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	return content
 
@@ -180,6 +186,12 @@ def register():
 		return redirect(ref or url_for('landing'))
 	content = render_template('landing.html', registration_form=registration_form, contact_form=contact_form)
 	return content
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 @app.route('/contact')
@@ -206,6 +218,12 @@ def contact_message():
 		db.session.commit()
 		return "message sent"
 	content = render_template('contact_confirmation.html', contact_form=contact_form)
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	return content
 
