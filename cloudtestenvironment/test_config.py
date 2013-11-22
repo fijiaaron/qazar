@@ -7,12 +7,12 @@ CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
 
 database = {
-	'uri' : SQLALCHEMY_DATABASE_URI
-	'secret_key' : SECRET_KEY
+	'uri' : SQLALCHEMY_DATABASE_URI,
+	'secret_key' : SECRET_KEY,
 	'csrf_enabled' : CSRF_ENABLED
 }
 
 paypal = {
-	'account' : 'foo@example.com'
+	'account' : 'foo@example.com',
 	'password' : 'secret'
 }
