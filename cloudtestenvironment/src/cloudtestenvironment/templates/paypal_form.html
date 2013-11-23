@@ -1,44 +1,54 @@
-<form id="purchase-form" name="purchase-form" action="payment" style="width: 425px" method="post">
-	{{purchase_form.hidden_tag()}}
-		{{purchase_form.name(size=25, placeholder="Name")}}
-		{% for error in purchase_form.errors.name %}
+<br>
+<!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_payments_by_pp_2line.png" border="0" alt="Payments by PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/webapps/mpp/how-paypal-works"><font size="2" face="Arial" color="#0079CD">How PayPal Works</font></a></div></td></tr></table><!-- PayPal Logo -->
+	{{paypal_form.hidden_tag()}}
+		{{paypal_form.name(size=25, placeholder="Name")}}
+		{% for error in paypal_form.errors.name %}
 		<span style="color:red; position: relative;">[{{error}}]</span>
 		{% endfor %}
 
-		{{purchase_form.address1(size=25, placeholder="Address Line 1")}}
-		{% for error in purchase_form.errors.address1 %}
+		{{paypal_form.address1(size=25, placeholder="Address Line 1")}}
+		{% for error in paypal_form.errors.address1 %}
 		<span style="color:red; position: relative;">[{{error}}]</span>
 		{% endfor %}
 
-		{{purchase_form.address2(size=25, placeholder="Address Line 2")}}
+		{{paypal_form.address2(size=25, placeholder="Address Line 2")}}
 
 
-		{{purchase_form.city(size=25, placeholder="City")}}
-		{% for error in purchase_form.errors.city %}
+		{{paypal_form.city(size=25, placeholder="City")}}
+		{% for error in paypal_form.errors.city %}
 		<span style="color:red; position: relative;">[{{error}}]</span>
 		{% endfor %}
 
+		{{paypal_form.state(placeholder="State")}}
+		{% for error in credit_card_form.errors.state %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
 
-		{{purchase_form.zipcode(size=25, placeholder="Zip Code")}}
-		{% for error in purchase_form.errors.zipcode %}
+		{{paypal_form.zipcode(size=25, placeholder="Zip Code")}}
+		{% for error in credit_card_form.errors.zipcode %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+
+		{{paypal_form.country(size=25, placeholder="Country")}}
+		{% for error in credit_card_form.errors.country %}
 		<span style="color:red; position: relative;">[{{error}}]</span>
 		{% endfor %}
 
 		<div style="float: right;">
-			<input type="hidden" name="cmd" value="_xclick">  
+			 <input type="hidden" name="cmd" value="_xclick">  
 			 <input type="hidden" name="business" value="aarone@one-shore.com">  
 			 <input type="hidden" name="item_name" value="Cloud Test Environment">    
 			 <input type="hidden" name="amount" value="99.00">  
-			 <input type="hidden" name="first_name" value=>  
+			 <input type="hidden" name="first_name" value="">  
 			 <input type="hidden" name="last_name" value="">  
-			 <input type="hidden" name="address1" value="">  
-			 <input type="hidden" name="address2" value="">  
-			 <input type="hidden" name="city" value="">  
-			 <input type="hidden" name="state" value="">  
-			 <input type="hidden" name="zip" value="">    
-			 <input type="hidden" name="email" value="">  
+			 <input type="hidden" name="address1" value="{{paypal_form.address1.data}}">  
+			 <input type="hidden" name="address2" value="{{paypal_form.address2.data}}">  
+			 <input type="hidden" name="city" value="{{paypal_form.city.data}}">  
+			 <input type="hidden" name="state" value="{{paypal_form.state.data}}">  
+			 <input type="hidden" name="zip" value="{{paypal_form.zipcode.data}}">    
+			 <input type="hidden" name="email" value="{{paypal_form.email.data}}">  
 			 <div style="position: relative; left: -45px;">
-			 	{{ purchase_form.submit(value="Paypal") }} 
+			 	{{ paypal_form.submit(value="Place Order") }} 
 			 </div>
 		</div>
 </form>

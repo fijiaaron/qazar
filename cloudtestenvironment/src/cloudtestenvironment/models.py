@@ -3,110 +3,6 @@ from cloudtestenvironment import app
 
 db = SQLAlchemy(app)
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-class Customer(db.Model):
-=======
-class Contact(db.Model):
->>>>>>> Stashed changes
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(40))
-	email = db.Column(db.String(40))
-	phone = db.Column(db.String(15))
-<<<<<<< Updated upstream
-	company = db.Column(db.String(40))
-	registered = db.Column(db.Boolean)
-
-	# relational patterns
-	address = db.relationship('Address')
-	user = db.relationship('User')
-	account = db.relationship('Account')
-	message = db.relationship('Message')
-	order = db.relationship('Order')
-
-	def __init__(self, name, email, phone, company, registered=False):
-=======
-	message = db.Column(db.String(500))
-
-	def __init__(self, name, email, phone, message):
-		self.name = name
-		self.email = email
-		self.phone = phone
-		self.message = message
-
-class Customer(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(40))
-	email = db.Column(db.String(40))
-	phone = db.Column(db.String(15))
-	company = db.Column(db.String(40))
-	registered = db.Column(db.Integer)
-
-	def __init__(self, name, email, phone, company, registered=1):
->>>>>>> Stashed changes
-		self.name = name
-		self.email = email
-		self.phone = phone
-		self.company = company
-		self.registered = registered
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-	def __repr__(self):
-		return '<Contact id:%s>' % self.id
-
-class Customer(db.Model):
-	__tablename__ = 'users'
-=======
-class Address(db.Model):
->>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
-	id = db.Column(db.Integer, primary_key=True)
-	address1 = db.Column(db.String(40))
-	address2 = db.Column(db.String(40))
-	city = db.Column(db.String(40))
-	state = db.Column(db.String(40))
-<<<<<<< HEAD
-	zipcode = db.Column(db.String(10))
-	phone = db.Column(db.String(15))
-	email = db.Column(db.String(40))
-	registered = db.Column(db.Boolean, nullable=False)
-
-	def __init__(self, name, address1, address2, country, city, state, zipcode, phone=None, email=None, registered=None):
-		self.name=name
-		self.address1=address1
-		self.address2=address2
-		self.country=country
-		self.city=city
-		self.state=state
-		self.zipcode=zipcode
-		self.phone=phone
-		self.email=email
-		self.registered=registered
-	def __repr__(self):
-		return '<User id:%s>' % self.id
-=======
->>>>>>> 122b4757dcb3eda735f5971e7189c720bcfe71b0
-<<<<<<< Updated upstream
-=======
-	country = db.Column(db.String(40))
-	zip_code = db.Column(db.String(10))
-	address_type = db.Column(db.String(40))
-	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
-
-	def __init__(self, address1, address2, city, state, country, 
-				zip_code, address_type, customer_id):
-		self.address1 = address1
-		self.address2 = address2
-		self.city = city
-		self.state = state
-		self.country = country
-		self.zip_code = zip_code
-		self.address_type = address_type
-		self.customer_id = customer_id
-
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(40))
@@ -187,8 +83,7 @@ class Payment(db.Model):
 		self.payment_on = payment_on
 		self.payment_method = payment_method
 
->>>>>>> 5ad3af6b9a7d462001011edaa1c356638fd2893b
-=======
+
 class Contact(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(40))
@@ -216,7 +111,3 @@ class Customer(db.Model):
                 self.phone = phone
                 self.company = company
                 self.registered = registered
-   	
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
