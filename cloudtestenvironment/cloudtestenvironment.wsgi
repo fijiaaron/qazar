@@ -1,6 +1,4 @@
 import os, sys
 
-cloudtestenvironment = os.path.abspath(".")
-sys.path.insert(0, cloudtestenvironment)
-
+sys.path.insert(0, os.path.abspath('cloudtestenvironment'))
 from cloudtestenvironment import app as application
