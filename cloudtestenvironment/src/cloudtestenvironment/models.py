@@ -1,7 +1,6 @@
 from flask.ext.sqlalchemy import SQLAlchemy
-from cloudtestenvironment import app
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 class Customer(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
