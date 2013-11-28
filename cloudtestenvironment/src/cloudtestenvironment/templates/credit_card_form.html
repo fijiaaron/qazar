@@ -1,0 +1,38 @@
+<form id="purchase-form" name="purchase-form" action="payment" style="width: 425px" method="post">
+	{{credit_card_form.hidden_tag()}}
+		{{credit_card_form.name(size=25, placeholder="Name")}}
+		{% for error in credit_card_form.errors.name %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+
+		{{credit_card_form.address1(size=25, placeholder="Address Line 1")}}
+		{% for error in credit_card_form.errors.address1 %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+
+		{{credit_card_form.address2(size=25, placeholder="Address Line 2")}}
+
+
+		{{credit_card_form.city(size=25, placeholder="City")}}
+		{% for error in credit_card_form.errors.city %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+
+		{{credit_card_form.state(placeholder="State")}}
+		{% for error in credit_card_form.errors.state %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+
+		{{credit_card_form.zipcode(size=25, placeholder="Zip Code")}}
+		{% for error in credit_card_form.errors.zipcode %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+
+		{{credit_card_form.country(size=25, placeholder="Country")}}
+		{% for error in credit_card_form.errors.country %}
+		<span style="color:red; position: relative;">[{{error}}]</span>
+		{% endfor %}
+		<div style="position: relative; left: -45px;float: right;">
+			 	{{credit_card_form.submit(value="Place Order")}} 
+		</div>
+</form>

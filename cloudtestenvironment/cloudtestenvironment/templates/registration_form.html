@@ -23,13 +23,22 @@
 		<span class="form_error">{{error}}</span>
 	{% endfor %}
 	{{ registration_form.company(placeholder="Company Name") }}
+	{{ registration_form.pagename(value="current_page")}}
 
+<<<<<<< HEAD:cloudtestenvironment/src/cloudtestenvironment/templates/registration_form.html
+{% if current_page != 'details' %}
+	<div style="float: left">
+		{{ registration_form.tell_me_more(value="Tell Me More") }}
+	</div>
+{% endif %}
+=======
 	{% if not "details" in request.path %}
 	<div style="float: left">
 		{{ registration_form.tell_me_more(value="Tell Me More") }}
 	</div>
 	{% endif %}
 
+>>>>>>> 07ce18808c46ac0b007e0a0de7997e4f5127cfd0:cloudtestenvironment/cloudtestenvironment/templates/registration_form.html
 	<div style="float: right">
 		{{ registration_form.sign_up(value="Sign Up") }}
 	</div>

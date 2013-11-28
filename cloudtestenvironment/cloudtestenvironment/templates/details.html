@@ -59,6 +59,9 @@ Public or private cloud.  Or a combination of public and private infrastructure.
 </p>
 
 <div style="float:right">
+<<<<<<< HEAD:cloudtestenvironment/src/cloudtestenvironment/templates/details.html
+	<a href="#register" data-reveal-id="order-registration-modal" data-animation="fade" class="button">Sign Up</a>
+=======
 	<a href="#register" data-reveal-id="registration-form-modal" data-animation="fade" class="button">Get Started</a>
 </div>
 
@@ -67,7 +70,13 @@ Public or private cloud.  Or a combination of public and private infrastructure.
 	{% include 'registration_form.html' %}
 	
 	<a class="close-reveal-modal">&#215;</a>
+>>>>>>> 07ce18808c46ac0b007e0a0de7997e4f5127cfd0:cloudtestenvironment/cloudtestenvironment/templates/details.html
 </div>
+
+	<div id="order-registration-modal" class="reveal-modal">
+		{% include 'registration_form.html' %}
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
 
 </div>
 
