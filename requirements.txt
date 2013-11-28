@@ -11,6 +11,7 @@ WTForms==1.0.5
 Werkzeug==0.9.4
 alembic==0.6.0
 itsdangerous==0.23
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 py-bcrypt==0.4
 pymongo==2.6.3
@@ -21,3 +22,6 @@ wsgiref==0.1.2
 pymongo==2.6.3
 requests==2.0.1
 >>>>>>> Stashed changes
+=======
+pytest==2.4.2
+>>>>>>> 07ce18808c46ac0b007e0a0de7997e4f5127cfd0

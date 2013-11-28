@@ -5,8 +5,6 @@ from models import db, Customer, Order, OrderItems
 from time import strftime
 
 
-
-
 @app.route('/')
 @app.route('/index')
 @app.route('/index.html')
@@ -25,13 +23,16 @@ def landing():
 
 @app.route('/landing', methods=['POST'])
 def landing_submit():
-	registration_form = RegistrationForm()
+	registration_form = RegistrationForm() 
+	#TODO: save registration
 
+	customer = Customer("Aaron Evans", "aarone@one-shore.com", "425-242-4304", "One Shore Inc")
 
 	if registration_form.tell_me_more.data == True:
 		return redirect(url_for('details')) #TODO: we can't remove the anchor
 	
 	if registration_form.sign_up.data == True:
+
 		if registration_form.validate_on_submit():
 
 			return redirect('register')
@@ -41,7 +42,6 @@ def landing_submit():
 
 
 	contact_form = ContactForm()
-
 
 	if registration_form.validate_on_submit():
 		#TODO: save registration
@@ -172,9 +172,11 @@ def payment_confirmation():
 @app.route('/details')
 @app.route('/details', methods=['GET'])
 def details():
-	registration_form = RegistrationForm()
 
-	content = render_template('details.html', registration_form=registration_form)
+	registration_form=RegistrationForm()
+	contact_form=ContactForm()
+
+	content = render_template("details.html", registration_form=registration_form, contact_form=contact_form)
 	return content
 
 @app.route('/details')
@@ -213,16 +215,6 @@ def whitepaper_download(register):
 def register():
 	registration_form = RegistrationForm()
 
-
-	customer = Customer(
-			name = registration_form.name.data,
-			email = registration_form.email.data,
-			phone = registration_form.phone.data,
-			company = registration_form.company.data
-
-		)	
-
-
 	customer = Customer(
 		name = registration_form.name.data,
 		email = registration_form.email.data,
@@ -234,31 +226,15 @@ def register():
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
-
-		return redirect(url_for('landing')) #TODO: Redirect to referrer page
-
-		return redirect(request.referrer)
-	
+		return redirect(url_for('landing')) #TODO: Redirect to referrer page	
 
 	if registration_form.tell_me_more.data == True:
 		customer.registered == False
 		db.session.add(customer)
 		db.session.commit()
-
 		return redirect(url_for('details', _anchor='registered')) #TODO: we can't remove the anchor
 
-
 	if registration_form.sign_up.data == True:
-		customer.registered == True
-		db.session.add(customer)
-		db.session.commit()
-		return redirect(url_for('order', _anchor='registered'))
-
-
-		return redirect(url_for('details')) #TODO: we can't remove the anchor
-
-
-	if registration_form.sign_up.data == True and registration_form.validate_on_submit():
 		customer.registered == True
 		db.session.add(customer)
 		db.session.commit()
@@ -292,6 +268,7 @@ def contact_message():
 		return "message sent"
 	content = render_template('contact_confirmation.html', contact_form=contact_form)
 	return content
+
 
 with app.test_request_context():
 	print "starting application"
