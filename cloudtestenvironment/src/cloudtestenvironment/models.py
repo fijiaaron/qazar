@@ -3,7 +3,12 @@ from cloudtestenvironment import app
 
 db = SQLAlchemy(app)
 
+<<<<<<< HEAD
 class User(db.Model):
+=======
+<<<<<<< Updated upstream
+class Registration(db.Model):
+>>>>>>> andrew
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(40))
 	password_hash = db.Column(db.String(255))
@@ -73,6 +78,7 @@ class Environment(db.Model):
 
 class Payment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+<<<<<<< HEAD
 	order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
 	amount = db.Column(db.Numeric(2))
 	payment_on = db.Column(db.String(40))
@@ -84,6 +90,33 @@ class Payment(db.Model):
 		self.payment_method = payment_method
 
 
+=======
+	name = db.Column(db.String(40))
+	address1 = db.Column(db.String(40))
+	address2 = db.Column(db.String(40))
+	country = db.Column(db.String(40))
+	city = db.Column(db.String(40))
+	state = db.Column(db.String(40))
+	zipcode = db.Column(db.String(10))
+	phone = db.Column(db.String(15))
+	email = db.Column(db.String(40))
+	registered = db.Column(db.Boolean, nullable=False)
+
+	def __init__(self, name, address1, address2, country, city, state, zipcode, phone=None, email=None, registered=None):
+		self.name=name
+		self.address1=address1
+		self.address2=address2
+		self.country=country
+		self.city=city
+		self.state=state
+		self.zipcode=zipcode
+		self.phone=phone
+		self.email=email
+		self.registered=registered
+	def __repr__(self):
+		return '<User id:%s>' % self.id
+=======
+>>>>>>> andrew
 class Contact(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(40))
@@ -110,4 +143,22 @@ class Customer(db.Model):
                 self.email = email
                 self.phone = phone
                 self.company = company
+<<<<<<< HEAD
                 self.registered = registered
+=======
+                self.registered = registered
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+   	
+>>>>>>> Stashed changes
+=======
+   	
+>>>>>>> Stashed changes
+=======
+   	
+>>>>>>> Stashed changes
+=======
+   	
+>>>>>>> Stashed changes
+>>>>>>> andrew

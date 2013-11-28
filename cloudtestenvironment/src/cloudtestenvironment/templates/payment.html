@@ -1,0 +1,15 @@
+<h1>Select Payment Method</h1>
+<div id="tabs">
+	<ul>
+    <li><a id="tab1" class="selected" href="#tab-1">Paypal</a></li>
+    <li><a id="tab2" href="#tab-2">Credit Card</a></li>
+	</ul>
+	<div id="tab-1" class="selected">
+		{% include 'paypal_form.html' %}
+	</div>
+	<div id="tab-2">
+		{% include 'credit_card_form.html' %}
+	</div>
+</div>
+
+
