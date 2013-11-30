@@ -2,7 +2,6 @@ from flask import render_template, redirect, url_for, request, session
 from forms import RegistrationForm, ContactForm, PurchaseForm, OrderForm
 from cloudtestenvironment import web_app as app
 from cloudtestenvironment import app as controller
-from models import db, Customer, Order, OrderItems
 from flaskless_models import Customer, Order
 from requests import post
 from time import strftime
