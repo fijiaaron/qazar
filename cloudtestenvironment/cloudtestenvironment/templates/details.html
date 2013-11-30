@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div style="max-width: 750px; padding-bottom: 4em">
+
+<h1> A Cloud Testing Stack </h1>
+
+<h2>
+What is the Cloud?
+</h2>
+
+The "cloud" refers to remote systems available over the network.
+
+Advantages of cloud services include: on demand, scaling (vertically and horizontally), virtualization, standardization of platform and infrastructure, outsourcing of data center, hardware, and network management.  
+
+Because of network abstraction and virtualization, when you work in the cloud, architectural changes may be called for (think "service oriented") and you may have options not available previously (think "horizontal scalability").  
+
+There are also security concerns with the cloud.  
+
+Cloud services are available at multiple levels:  Infrastructure, Platform, and Software "as as Service".
+
+<h2>
+Infrastructure as a Service (IaaS)
+</h2>
+
+Infrastructure includes computing resources, storage, network, and base operating
+
+Cloud Infrastructure providers.
+
+<ul>
+	<li> Amazon Web Services </li>
+	<li> Rackspace Cloud </li>
+	<li> HP Cloud </li>
+	<li> Microsoft Azure </li>
+	<li> Linode </li>
+</ul>
+
+Open source implementations
+<ul>
+	<li> Open Stack </li>
+	<li> Eucalyptus </li>
+</ul>
+
+Public or private cloud.  Or a combination of public and private infrastructure. VPN to internal network.  
+
+<p>
+</p>
+
+<p>
+
+</p>
+
+<br><br>
+<img src="#" width="700px" height="250px">
+<br><br>
+
+<p>
+ Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+</p>
+
+<div style="float:right">
+	<a href="#register" data-reveal-id="order-registration-modal" data-animation="fade" class="button">Sign Up</a>
+</div>
+
+	<div id="order-registration-modal" class="reveal-modal">
+		{% include 'registration_form.html' %}
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+
+</div>
+{% endblock %}

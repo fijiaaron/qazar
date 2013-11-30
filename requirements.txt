@@ -1,7 +1,6 @@
+Fabric==1.8.0
 Flask==0.10.1
-Flask-Bcrypt==0.5.2
 Flask-SQLAlchemy==0.16
-Flask-Testing==0.4
 Flask-WTF==0.8.4
 Jinja2==2.7.1
 Mako==0.9.0
@@ -9,9 +8,9 @@ MarkupSafe==0.18
 SQLAlchemy==0.8.2
 WTForms==1.0.5
 Werkzeug==0.9.4
-alembic==0.6.0
-itsdangerous==0.23
-py-bcrypt==0.4
+ecdsa==0.10
+paramiko==1.12.0
+pycrypto==2.6.1
 pymongo==2.6.3
 requests==2.0.1
 twill==0.9

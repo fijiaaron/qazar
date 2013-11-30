@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title> Cloud Test Environment - Do you feel like you're building sandcastles in the clouds? </title>
+
+		<!-- <link rel="stylesheet" href="/css/normalize.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/foundation.css" /> -->
+		<link rel="stylesheet" href="/reveal/reveal.css">
+		<link href="/css/sandcastles.css" rel="stylesheet" type="text/css" media="screen" />
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script>
+			if (typeof jQuery == 'undefined') 
+			{
+				includeScript('/js/jquery-1.10.2.min.js');
+			}
+		</script>
+		<script type="text/javascript" src="/reveal/jquery.reveal.js"></script>		
+		<script type="text/javascript" src="js/util.js"></script>
+		<script language="javascript">
+			function showModal() {
+				$('#tell_me_more').click(function(){
+					$('#registration-form').attr('action', 'details');
+				});
+
+				if (window.location.href.contains("#register"))
+				{
+					$('#registration-form-modal').reveal({'animation':'fade'});
+					$('#order-registration-modal').reveal({'animation':'fade'});
+				}
+				if (window.location.href.contains('#contact')){
+					$('#contact-form-modal').reveal({'animation':'fade'});
+				}
+			}
+		</script>
+	</head>
+	<body onload="showModal();">
+		
+		<div class="wrapper">
+
+			<div class="content">
+
+				{% block content %}{% endblock %}
+
+			</div><!-- end content -->
+
+		<div class="push"></div>
+
+		</div> <!-- end wrapper -->
+
+		{% include 'footer.html' %}
+
+	</body>
+</html>
