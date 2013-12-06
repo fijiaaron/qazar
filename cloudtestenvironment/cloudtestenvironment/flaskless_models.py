@@ -19,6 +19,13 @@ class Order(object):
 		self.order_created = order_created
 		self.order_fulfilled = order_fulfilled
 
+class Payment(object):
+	def __init__(self, order_id=None, amount=None, payment_on=None, payment_method=None):
+		self.order_id = order_id
+		self.amount = amount
+		self.payment_on = payment_on
+		self.payment_method = payment_method
+
 #tables
 customers = Table('customers', metadata,
 	Column('id', Integer, primary_key=True),
@@ -38,10 +45,18 @@ orders = Table('orders', metadata,
 	Column('order_fulfilled', String(40))
 )
 
+payments = Table('payments', metadata,
+	Column('id', Integer, primary_key=True),
+	Column('order_id', Integer, ForeignKey('orders.id')),
+	Column('amount', Numeric(2)),
+	Column('payment_on', String(40)),
+	Column('payment_method', String(40))
+)
+
 #mappers
 mapper(Customer, customers)
 mapper(Order, orders)
-
+mapper(Payment, payments)
 
 
 
