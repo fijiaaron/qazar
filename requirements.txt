@@ -9,7 +9,9 @@ SQLAlchemy==0.8.2
 WTForms==1.0.5
 Werkzeug==0.9.4
 ecdsa==0.10
+httplib2==0.8
 paramiko==1.12.0
+paypalrestsdk==0.6.4
 pycrypto==2.6.1
 pymongo==2.6.3
 requests==2.0.1

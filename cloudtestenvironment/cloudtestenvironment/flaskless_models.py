@@ -20,10 +20,10 @@ class Order(object):
 		self.order_fulfilled = order_fulfilled
 
 class Payment(object):
-	def __init__(self, order_id=None, amount=None, payment_on=None, payment_method=None):
+	def __init__(self, order_id=None, payment_on=None, payment_status=None, payment_method=None):
 		self.order_id = order_id
-		self.amount = amount
 		self.payment_on = payment_on
+		self.payment_status = payment_status
 		self.payment_method = payment_method
 
 #tables
@@ -48,8 +48,8 @@ orders = Table('orders', metadata,
 payments = Table('payments', metadata,
 	Column('id', Integer, primary_key=True),
 	Column('order_id', Integer, ForeignKey('orders.id')),
-	Column('amount', Numeric(2)),
 	Column('payment_on', String(40)),
+	Column('payment_status', String(40)),
 	Column('payment_method', String(40))
 )
 

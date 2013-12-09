@@ -1,56 +1,43 @@
-from json import dumps
-from wtforms.validators import ValidationError
-from flaskless_models import Customer, Order
+from flaskless_models import Payment
 
 class CloudTestEnvironmentApp():
 
-	def __init__(self, session):
+	def __init__(self, session=None, payment_processor=None):
 		self.session = session
+		self.payment_processor = payment_processor
 
-	def register(self, customer_info):
+	def register(self, customer):
 		"""
 		Args:
-			customer_info: A RegistrationForm Form instance.
+			customer: A Customer Model instance.
 		"""
-		customer = Customer(
-			name = customer_info.name.data,
-			email = customer_info.email.data,
-			phone = customer_info.phone.data,
-			company = customer_info.company.data
-		)
 		if customer_info.validate():
 			self.session.add(customer)
 			self.session.commit()
 		else:
 			raise ValidationError("Info Not Validated.") 
-		return customer
 
 	def order(self, order):
 		"""
 		Args:
-			order: A Order Model instance.
-			customer: A Customer Model instance.
+			order: An Order Model instance.
 		"""
-		#order = Order(
-			#customer_id = customer.id,
-            #order_items = dumps([item.data for item in order_info.order_items]),
-			#order_location = order_info.order_location.data
-		#)
-		#if order_info.validate():
 		self.session.add(order)
 		self.session.commit()
-		#else:
-			#raise ValidationError("Info Not Validated.")
-		#return order
 
 	def purchase(self, payment_info, order):
 		"""
 		Args:
-			payment_info: A PurchaseForm Form instance.
+			payment_info: A Dictionary instance.
 			order: A Order Model instance.
 		"""
-		payment_status = Payment(
-			order_id = order.id,
-			payment_method = dumps({field.name: field.data for field in payment_info})
+		payment = self.payment_processor.make_payment(payment_info, order)
+		self.session.add(
+		    Payment(
+                order_id = order.id,
+				payment_on = payment.create_time,
+				payment_method = payment.payer.payment_method,
+				payment_status = payment.state
+			)
 		)
-
+		self.session.commit()

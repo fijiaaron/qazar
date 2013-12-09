@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request, session
 from forms import RegistrationForm, ContactForm, PurchaseForm, OrderForm
 from cloudtestenvironment import web_app as app
 from cloudtestenvironment import app as controller
-from flaskless_models import Customer, Order
+from flaskless_models import Customer, Order, Payment
 from requests import post
 from time import strftime
 
@@ -135,7 +135,13 @@ def whitepaper_download(register):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	customer_info = RegistrationForm(request.form)
-	customer = controller.register(customer_info)
+	customer = Customer(
+		name = customer_info.name.data
+		email = customer_info.email.data
+		phone = customer_info.phone.data
+		company = customer_info.company.data
+	)
+	controller.register(customer)
 	
 	if not customer_info.validate():
 		#customer.registered == False
