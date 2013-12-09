@@ -32,11 +32,11 @@ class PaypalPaymentProcessor():
 						"currency": "USD",
 						"quantity": 1
 					}]
-				},
+			    },
 			    "amount": {
 				    "total": "0.99",
-					"currency": "USD"
-				}, 
+				    "currency": "USD"
+			    }, 
                             "description": "Test transaction."
 			}]
 		})
