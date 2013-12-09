@@ -23,16 +23,17 @@
 		<span class="form_error">{{error}}</span>
 	{% endfor %}
 	{{ registration_form.company(placeholder="Company Name") }}
+	{{ registration_form.pagename(value="current_page")}}
 
-	{% if not "details" in request.path %}
+{% if current_page != 'details' %}
 	<div style="float: left">
 		{{ registration_form.tell_me_more(value="Tell Me More") }}
 	</div>
-	{% endif %}
-
+{% endif %}
 	<div style="float: right">
 		{{ registration_form.sign_up(value="Sign Up") }}
 	</div>
+
 	<div style="clear: both"/>
 
 </form>

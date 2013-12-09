@@ -1,9 +1,8 @@
-from flask import Flask
-app = Flask(__name__, static_folder='static', static_url_path='')
-app.config.from_object('config')
+from database import db_session
+from cloudtestenvironmentapp import CloudTestEnvironmentApp
+from cloudtestenvironmentwebapp import CloudTestEnvironmentWebApp
 
-from flask.ext.sqlalchemy import SQLAlchemy
-db = SQLAlchemy(app)
-
-import models
-import routes
+app = CloudTestEnvironmentApp(db_session)
+web_app = CloudTestEnvironmentWebApp(__name__, static_folder='static', static_url_path='')
+web_app.config.from_object('config')
+web_app.init_app()

@@ -1,6 +1,6 @@
 #!python
-import sys
-sys.path.insert(0, '.')
+#import sys
+#sys.path.insert(0, '.')
 
-from cloudtestenvironment import app as application
-application.run(host='0.0.0.0', port=5000, debug=True)
+from cloudtestenvironment import web_app as web_application
+web_application.run(host='127.0.0.1', port=5000, debug=True)

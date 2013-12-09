@@ -1,3 +1,4 @@
+Fabric==1.8.0
 Flask==0.10.1
 Flask-SQLAlchemy==0.16
 Flask-WTF==0.8.4
@@ -7,6 +8,12 @@ MarkupSafe==0.18
 SQLAlchemy==0.8.2
 WTForms==1.0.5
 Werkzeug==0.9.4
-alembic==0.6.0
-itsdangerous==0.23
-pytest==2.4.2
+ecdsa==0.10
+httplib2==0.8
+paramiko==1.12.0
+paypalrestsdk==0.6.4
+pycrypto==2.6.1
+pymongo==2.6.3
+requests==2.0.1
+twill==0.9
+wsgiref==0.1.2

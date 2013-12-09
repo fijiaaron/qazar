@@ -1,7 +1,9 @@
 <html>
 	<head>
 		<title> Cloud Test Environment - Do you feel like you're building sandcastles in the clouds? </title>
-		
+
+		<!-- <link rel="stylesheet" href="/css/normalize.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/foundation.css" /> -->
 		<link rel="stylesheet" href="/reveal/reveal.css">
 		<link href="/css/sandcastles.css" rel="stylesheet" type="text/css" media="screen" />
 
@@ -16,11 +18,15 @@
 		<script type="text/javascript" src="js/util.js"></script>
 		<script language="javascript">
 			function showModal() {
+				$('#tell_me_more').click(function(){
+					$('#registration-form').attr('action', 'details');
+				});
+
 				if (window.location.href.contains("#register"))
 				{
 					$('#registration-form-modal').reveal({'animation':'fade'});
+					$('#order-registration-modal').reveal({'animation':'fade'});
 				}
-
 				if (window.location.href.contains('#contact')){
 					$('#contact-form-modal').reveal({'animation':'fade'});
 				}
