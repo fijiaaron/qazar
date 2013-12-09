@@ -8,7 +8,7 @@ class PaypalPaymentProcessor():
 		"""
 		"""
 		paypalrestsdk.configure({
-           "mode": paypalconfig.PAYPAL_MODE,
+                   "mode": paypalconfig.PAYPAL_MODE,
 		   "client_id": paypalconfig.PAYPAL_CLIENT_ID,
 		   "client_secret": paypalconfig.PAYPAL_CLIENT_SECRET
 		})
@@ -37,7 +37,7 @@ class PaypalPaymentProcessor():
 				    "total": "0.99",
 					"currency": "USD"
 				}, 
-                "description": "Test transaction."
+                            "description": "Test transaction."
 			}]
 		})
 		
@@ -65,5 +65,3 @@ class PaypalPaymentProcessor():
 		# payment.execute({"payer_id": PayerID})
 		
 		return payment
-
-
